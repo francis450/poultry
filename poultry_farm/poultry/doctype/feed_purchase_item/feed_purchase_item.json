@@ -1,0 +1,72 @@
+{
+ "name": "Feed Purchase Item",
+ "doctype": "DocType",
+ "module": "Poultry",
+ "istable": 1,
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "feed_type",
+  "no_of_bags",
+  "pack_weight_kg",
+  "total_kgs",
+  "price_per_bag",
+  "total_cost"
+ ],
+ "fields": [
+  {
+   "fieldname": "feed_type",
+   "fieldtype": "Select",
+   "label": "Feed Type",
+   "options": "Pre-Starter\nC1 Grower\nC2 Grower\nC3 Grower\nFinisher",
+   "in_list_view": 1,
+   "reqd": 1,
+   "idx": 1
+  },
+  {
+   "fieldname": "no_of_bags",
+   "fieldtype": "Int",
+   "label": "No. of Bags",
+   "in_list_view": 1,
+   "reqd": 1,
+   "idx": 2
+  },
+  {
+   "fieldname": "pack_weight_kg",
+   "fieldtype": "Float",
+   "label": "Pack Weight (KG)",
+   "in_list_view": 1,
+   "default": "50",
+   "description": "Weight per bag in KG",
+   "idx": 3
+  },
+  {
+   "fieldname": "total_kgs",
+   "fieldtype": "Float",
+   "label": "Total KGs",
+   "in_list_view": 1,
+   "read_only": 1,
+   "description": "Auto-calculated: No. of Bags × Pack Weight",
+   "idx": 4
+  },
+  {
+   "fieldname": "price_per_bag",
+   "fieldtype": "Currency",
+   "label": "Price per Bag (KES)",
+   "options": "KES",
+   "idx": 5
+  },
+  {
+   "fieldname": "total_cost",
+   "fieldtype": "Currency",
+   "label": "Total Cost (KES)",
+   "options": "KES",
+   "read_only": 1,
+   "description": "Auto-calculated: No. of Bags × Price per Bag",
+   "idx": 6
+  }
+ ],
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

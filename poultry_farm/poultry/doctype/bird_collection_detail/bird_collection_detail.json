@@ -1,0 +1,68 @@
+{
+ "name": "Bird Collection Detail",
+ "doctype": "DocType",
+ "module": "Poultry",
+ "istable": 1,
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "weight_band",
+  "no_of_birds",
+  "average_weight_kg",
+  "price_per_kg",
+  "total_weight_kg",
+  "total_amount"
+ ],
+ "fields": [
+  {
+   "fieldname": "weight_band",
+   "fieldtype": "Select",
+   "label": "Weight Band",
+   "options": "Below 1.6 KG\n1.6 to 1.8 KG\nAbove 1.8 KG",
+   "in_list_view": 1,
+   "reqd": 1,
+   "idx": 1
+  },
+  {
+   "fieldname": "no_of_birds",
+   "fieldtype": "Int",
+   "label": "No. of Birds",
+   "in_list_view": 1,
+   "reqd": 1,
+   "idx": 2
+  },
+  {
+   "fieldname": "average_weight_kg",
+   "fieldtype": "Float",
+   "label": "Avg Weight (KG)",
+   "in_list_view": 1,
+   "idx": 3
+  },
+  {
+   "fieldname": "price_per_kg",
+   "fieldtype": "Currency",
+   "label": "Price/KG (KES)",
+   "options": "KES",
+   "in_list_view": 1,
+   "idx": 4
+  },
+  {
+   "fieldname": "total_weight_kg",
+   "fieldtype": "Float",
+   "label": "Total Weight (KG)",
+   "read_only": 1,
+   "idx": 5
+  },
+  {
+   "fieldname": "total_amount",
+   "fieldtype": "Currency",
+   "label": "Total Amount (KES)",
+   "options": "KES",
+   "read_only": 1,
+   "idx": 6
+  }
+ ],
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

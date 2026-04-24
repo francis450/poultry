@@ -5,6 +5,32 @@ app_description = "Poultry Farm Management"
 app_email = "franciskamande2001@gmail.com"
 app_license = "mit"
 
+# Document Events
+doc_events = {
+	"Flock Daily Record": {
+		"after_save": "poultry_farm.poultry.doctype.flock_daily_record.flock_daily_record.after_save",
+		"on_submit":  "poultry_farm.poultry.doctype.flock_daily_record.flock_daily_record.on_submit",
+	},
+	"Feed Purchase Entry": {
+		"on_submit": "poultry_farm.poultry.doctype.feed_purchase_entry.feed_purchase_entry.on_submit",
+		"on_cancel": "poultry_farm.poultry.doctype.feed_purchase_entry.feed_purchase_entry.on_cancel",
+	},
+	"Bird Collection Entry": {
+		"on_submit": "poultry_farm.poultry.doctype.bird_collection_entry.bird_collection_entry.on_submit",
+		"on_cancel": "poultry_farm.poultry.doctype.bird_collection_entry.bird_collection_entry.on_cancel",
+	},
+}
+
+# Scheduled Tasks
+scheduler_events = {
+	"daily": [
+		"poultry_farm.poultry.scheduled.create_daily_records",
+	],
+	"weekly": [
+		"poultry_farm.poultry.scheduled.send_weekly_summary",
+	],
+}
+
 # Apps
 # ------------------
 

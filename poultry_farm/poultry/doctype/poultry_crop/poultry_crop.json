@@ -1,0 +1,278 @@
+{
+ "name": "Poultry Crop",
+ "doctype": "DocType",
+ "module": "Poultry",
+ "naming_rule": "Expression",
+ "autoname": "format:CROP-{farm_code}-{placement_date}-{####}",
+ "title_field": "crop_title",
+ "track_changes": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "crop_title",
+  "crop_number",
+  "col_break_1",
+  "status",
+  "section_farm",
+  "farm_name",
+  "farm_code",
+  "col_break_2",
+  "warehouse",
+  "contract_farmer",
+  "section_chick",
+  "placement_date",
+  "chicks_received",
+  "col_break_3",
+  "chick_supplier",
+  "chick_cost_per_unit",
+  "total_chick_cost",
+  "section_targets",
+  "current_stock",
+  "total_mortality",
+  "mortality_pct",
+  "col_break_4",
+  "total_feed_consumed_kg",
+  "fcr",
+  "last_recorded_weight_gms",
+  "section_closure",
+  "expected_slaughter_date",
+  "actual_slaughter_date",
+  "col_break_5",
+  "total_birds_collected",
+  "total_revenue",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "crop_title",
+   "fieldtype": "Data",
+   "label": "Crop Title",
+   "read_only": 1,
+   "description": "Auto-set: Farm + Crop Number",
+   "idx": 1
+  },
+  {
+   "fieldname": "crop_number",
+   "fieldtype": "Int",
+   "label": "Crop Number",
+   "reqd": 1,
+   "description": "Sequential crop number for this farm e.g. 14",
+   "idx": 2
+  },
+  {
+   "fieldname": "col_break_1",
+   "fieldtype": "Column Break",
+   "idx": 3
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Draft\nActive\nSlaughter\nClosed",
+   "default": "Draft",
+   "reqd": 1,
+   "in_list_view": 1,
+   "idx": 4
+  },
+  {
+   "fieldname": "section_farm",
+   "fieldtype": "Section Break",
+   "label": "Farm Details",
+   "idx": 5
+  },
+  {
+   "fieldname": "farm_name",
+   "fieldtype": "Data",
+   "label": "Farm Name",
+   "reqd": 1,
+   "description": "e.g. Paul Farm or Belmonte",
+   "in_list_view": 1,
+   "idx": 6
+  },
+  {
+   "fieldname": "farm_code",
+   "fieldtype": "Data",
+   "label": "Farm Code",
+   "reqd": 1,
+   "description": "Short code used in naming e.g. PAUL",
+   "idx": 7
+  },
+  {
+   "fieldname": "col_break_2",
+   "fieldtype": "Column Break",
+   "idx": 8
+  },
+  {
+   "fieldname": "warehouse",
+   "fieldtype": "Data",
+   "label": "Farm Warehouse",
+   "description": "Name of the warehouse/store for this farm",
+   "idx": 9
+  },
+  {
+   "fieldname": "contract_farmer",
+   "fieldtype": "Data",
+   "label": "Contract Farmer",
+   "description": "The farmer running this crop under contract",
+   "idx": 10
+  },
+  {
+   "fieldname": "section_chick",
+   "fieldtype": "Section Break",
+   "label": "Chick Details",
+   "idx": 11
+  },
+  {
+   "fieldname": "placement_date",
+   "fieldtype": "Date",
+   "label": "Placement Date",
+   "reqd": 1,
+   "description": "Date chicks were received. Day 1 of the crop.",
+   "idx": 12
+  },
+  {
+   "fieldname": "chicks_received",
+   "fieldtype": "Int",
+   "label": "Chicks Received",
+   "reqd": 1,
+   "idx": 13
+  },
+  {
+   "fieldname": "col_break_3",
+   "fieldtype": "Column Break",
+   "idx": 14
+  },
+  {
+   "fieldname": "chick_supplier",
+   "fieldtype": "Data",
+   "label": "Chick Supplier",
+   "idx": 15
+  },
+  {
+   "fieldname": "chick_cost_per_unit",
+   "fieldtype": "Currency",
+   "label": "Chick Cost / Unit (KES)",
+   "options": "KES",
+   "idx": 16
+  },
+  {
+   "fieldname": "total_chick_cost",
+   "fieldtype": "Currency",
+   "label": "Total Chick Cost (KES)",
+   "options": "KES",
+   "read_only": 1,
+   "description": "Chicks Received × Cost per Unit",
+   "idx": 17
+  },
+  {
+   "fieldname": "section_targets",
+   "fieldtype": "Section Break",
+   "label": "Target & Performance (Auto-updated)",
+   "idx": 18
+  },
+  {
+   "fieldname": "current_stock",
+   "fieldtype": "Int",
+   "label": "Current Stock",
+   "read_only": 1,
+   "description": "Live birds as of last Flock Daily Record",
+   "idx": 19
+  },
+  {
+   "fieldname": "total_mortality",
+   "fieldtype": "Int",
+   "label": "Total Mortality",
+   "read_only": 1,
+   "idx": 20
+  },
+  {
+   "fieldname": "mortality_pct",
+   "fieldtype": "Percent",
+   "label": "Mortality %",
+   "read_only": 1,
+   "idx": 21
+  },
+  {
+   "fieldname": "col_break_4",
+   "fieldtype": "Column Break",
+   "idx": 22
+  },
+  {
+   "fieldname": "total_feed_consumed_kg",
+   "fieldtype": "Float",
+   "label": "Total Feed Consumed (KG)",
+   "read_only": 1,
+   "idx": 23
+  },
+  {
+   "fieldname": "fcr",
+   "fieldtype": "Float",
+   "label": "FCR (Feed Conversion Ratio)",
+   "read_only": 1,
+   "description": "Total Feed KG ÷ Total Live Weight KG",
+   "idx": 24
+  },
+  {
+   "fieldname": "last_recorded_weight_gms",
+   "fieldtype": "Float",
+   "label": "Last Recorded Weight (GMS)",
+   "read_only": 1,
+   "idx": 25
+  },
+  {
+   "fieldname": "section_closure",
+   "fieldtype": "Section Break",
+   "label": "Closure",
+   "idx": 26
+  },
+  {
+   "fieldname": "expected_slaughter_date",
+   "fieldtype": "Date",
+   "label": "Expected Slaughter Date",
+   "idx": 27
+  },
+  {
+   "fieldname": "actual_slaughter_date",
+   "fieldtype": "Date",
+   "label": "Actual Slaughter Date",
+   "read_only": 1,
+   "idx": 28
+  },
+  {
+   "fieldname": "col_break_5",
+   "fieldtype": "Column Break",
+   "idx": 29
+  },
+  {
+   "fieldname": "total_birds_collected",
+   "fieldtype": "Int",
+   "label": "Total Birds Collected",
+   "read_only": 1,
+   "idx": 30
+  },
+  {
+   "fieldname": "total_revenue",
+   "fieldtype": "Currency",
+   "label": "Total Revenue (KES)",
+   "options": "KES",
+   "read_only": 1,
+   "idx": 31
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks",
+   "idx": 32
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

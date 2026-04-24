@@ -1,0 +1,139 @@
+{
+ "name": "Feed Purchase Entry",
+ "doctype": "DocType",
+ "module": "Poultry",
+ "naming_rule": "Expression",
+ "autoname": "format:FPE-{crop}-{####}",
+ "is_submittable": 1,
+ "track_changes": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "crop",
+  "purchase_date",
+  "col_break_1",
+  "supplier",
+  "warehouse",
+  "section_items",
+  "feed_items",
+  "section_totals",
+  "total_bags",
+  "total_kgs",
+  "col_break_totals",
+  "total_cost",
+  "stock_entry_reference",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "crop",
+   "fieldtype": "Link",
+   "label": "Poultry Crop",
+   "options": "Poultry Crop",
+   "reqd": 1,
+   "in_list_view": 1,
+   "get_query": "return { filters: { status: ['in', ['Active', 'Slaughter']] } }",
+   "idx": 1
+  },
+  {
+   "fieldname": "purchase_date",
+   "fieldtype": "Date",
+   "label": "Purchase Date",
+   "reqd": 1,
+   "default": "Today",
+   "in_list_view": 1,
+   "idx": 2
+  },
+  {
+   "fieldname": "col_break_1",
+   "fieldtype": "Column Break",
+   "idx": 3
+  },
+  {
+   "fieldname": "supplier",
+   "fieldtype": "Data",
+   "label": "Feed Supplier",
+   "idx": 4
+  },
+  {
+   "fieldname": "warehouse",
+   "fieldtype": "Data",
+   "label": "Destination Warehouse",
+   "description": "Auto-fetched from Poultry Crop",
+   "idx": 5
+  },
+  {
+   "fieldname": "section_items",
+   "fieldtype": "Section Break",
+   "label": "Feed Items",
+   "idx": 6
+  },
+  {
+   "fieldname": "feed_items",
+   "fieldtype": "Table",
+   "label": "Feed Items",
+   "options": "Feed Purchase Item",
+   "reqd": 1,
+   "idx": 7
+  },
+  {
+   "fieldname": "section_totals",
+   "fieldtype": "Section Break",
+   "label": "Totals",
+   "idx": 8
+  },
+  {
+   "fieldname": "total_bags",
+   "fieldtype": "Int",
+   "label": "Total Bags",
+   "read_only": 1,
+   "idx": 9
+  },
+  {
+   "fieldname": "total_kgs",
+   "fieldtype": "Float",
+   "label": "Total KGs",
+   "read_only": 1,
+   "idx": 10
+  },
+  {
+   "fieldname": "col_break_totals",
+   "fieldtype": "Column Break",
+   "idx": 11
+  },
+  {
+   "fieldname": "total_cost",
+   "fieldtype": "Currency",
+   "label": "Total Cost (KES)",
+   "options": "KES",
+   "read_only": 1,
+   "idx": 12
+  },
+  {
+   "fieldname": "stock_entry_reference",
+   "fieldtype": "Data",
+   "label": "Stock Entry Reference",
+   "read_only": 1,
+   "description": "Auto-generated reference on submit",
+   "idx": 13
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks",
+   "idx": 14
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "submit": 1,
+   "cancel": 1,
+   "delete": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

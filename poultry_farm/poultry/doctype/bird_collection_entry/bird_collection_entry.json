@@ -1,0 +1,135 @@
+{
+ "name": "Bird Collection Entry",
+ "doctype": "DocType",
+ "module": "Poultry",
+ "naming_rule": "Expression",
+ "autoname": "format:BCE-{crop}-{####}",
+ "is_submittable": 1,
+ "track_changes": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "crop",
+  "collection_date",
+  "col_break_1",
+  "bird_age_days",
+  "collection_details",
+  "section_summary",
+  "total_birds",
+  "total_weight_kg",
+  "col_break_summary",
+  "average_weight_kg",
+  "total_revenue",
+  "revenue_per_bird",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "crop",
+   "fieldtype": "Link",
+   "label": "Poultry Crop",
+   "options": "Poultry Crop",
+   "reqd": 1,
+   "in_list_view": 1,
+   "get_query": "return { filters: { status: 'Slaughter' } }",
+   "idx": 1
+  },
+  {
+   "fieldname": "collection_date",
+   "fieldtype": "Date",
+   "label": "Collection Date",
+   "reqd": 1,
+   "default": "Today",
+   "in_list_view": 1,
+   "idx": 2
+  },
+  {
+   "fieldname": "col_break_1",
+   "fieldtype": "Column Break",
+   "idx": 3
+  },
+  {
+   "fieldname": "bird_age_days",
+   "fieldtype": "Int",
+   "label": "Bird Age (Days)",
+   "read_only": 1,
+   "description": "Auto-calculated from crop placement date",
+   "idx": 4
+  },
+  {
+   "fieldname": "collection_details",
+   "fieldtype": "Table",
+   "label": "Collection by Weight Band",
+   "options": "Bird Collection Detail",
+   "reqd": 1,
+   "idx": 5
+  },
+  {
+   "fieldname": "section_summary",
+   "fieldtype": "Section Break",
+   "label": "Summary",
+   "idx": 6
+  },
+  {
+   "fieldname": "total_birds",
+   "fieldtype": "Int",
+   "label": "Total Birds Collected",
+   "read_only": 1,
+   "in_list_view": 1,
+   "idx": 7
+  },
+  {
+   "fieldname": "total_weight_kg",
+   "fieldtype": "Float",
+   "label": "Total Weight (KG)",
+   "read_only": 1,
+   "idx": 8
+  },
+  {
+   "fieldname": "col_break_summary",
+   "fieldtype": "Column Break",
+   "idx": 9
+  },
+  {
+   "fieldname": "average_weight_kg",
+   "fieldtype": "Float",
+   "label": "Average Weight (KG)",
+   "read_only": 1,
+   "idx": 10
+  },
+  {
+   "fieldname": "total_revenue",
+   "fieldtype": "Currency",
+   "label": "Total Revenue (KES)",
+   "options": "KES",
+   "read_only": 1,
+   "idx": 11
+  },
+  {
+   "fieldname": "revenue_per_bird",
+   "fieldtype": "Currency",
+   "label": "Revenue / Bird (KES)",
+   "options": "KES",
+   "read_only": 1,
+   "idx": 12
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks",
+   "idx": 13
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "submit": 1,
+   "cancel": 1,
+   "delete": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

@@ -1,0 +1,29 @@
+{
+ "name": "Feed Standard Config",
+ "doctype": "DocType",
+ "module": "Poultry",
+ "issingle": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "standards"
+ ],
+ "fields": [
+  {
+   "fieldname": "standards",
+   "fieldtype": "Table",
+   "label": "Daily Feed Standards",
+   "options": "Feed Standard Row",
+   "idx": 1
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

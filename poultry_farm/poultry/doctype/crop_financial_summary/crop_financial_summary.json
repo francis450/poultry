@@ -1,0 +1,264 @@
+{
+ "name": "Crop Financial Summary",
+ "doctype": "DocType",
+ "module": "Poultry",
+ "naming_rule": "Expression",
+ "autoname": "format:CFS-{crop}",
+ "engine": "InnoDB",
+ "field_order": [
+  "crop",
+  "generated_date",
+  "section_input_costs",
+  "chick_cost",
+  "feed_cost_prestarter",
+  "feed_cost_c1",
+  "feed_cost_c2",
+  "feed_cost_c3",
+  "feed_cost_finisher",
+  "total_feed_cost",
+  "col_break_costs",
+  "total_mortality_birds",
+  "mortality_loss_value",
+  "other_costs",
+  "cumulative_cost",
+  "section_revenue",
+  "total_birds_slaughtered",
+  "total_revenue",
+  "col_break_rev",
+  "gross_profit",
+  "net_profit",
+  "profit_margin_pct",
+  "section_per_bird",
+  "cost_per_bird",
+  "revenue_per_bird",
+  "col_break_per_bird",
+  "feed_cost_per_bird",
+  "fcr"
+ ],
+ "fields": [
+  {
+   "fieldname": "crop",
+   "fieldtype": "Link",
+   "label": "Poultry Crop",
+   "options": "Poultry Crop",
+   "reqd": 1,
+   "read_only": 1,
+   "in_list_view": 1,
+   "idx": 1
+  },
+  {
+   "fieldname": "generated_date",
+   "fieldtype": "Date",
+   "label": "Generated On",
+   "read_only": 1,
+   "idx": 2
+  },
+  {
+   "fieldname": "section_input_costs",
+   "fieldtype": "Section Break",
+   "label": "Input Costs",
+   "idx": 3
+  },
+  {
+   "fieldname": "chick_cost",
+   "fieldtype": "Currency",
+   "label": "Total Chick Cost (KES)",
+   "options": "KES",
+   "read_only": 1,
+   "idx": 4
+  },
+  {
+   "fieldname": "feed_cost_prestarter",
+   "fieldtype": "Currency",
+   "label": "Pre-Starter Feed Cost (KES)",
+   "options": "KES",
+   "read_only": 1,
+   "idx": 5
+  },
+  {
+   "fieldname": "feed_cost_c1",
+   "fieldtype": "Currency",
+   "label": "C1 Grower Feed Cost (KES)",
+   "options": "KES",
+   "read_only": 1,
+   "idx": 6
+  },
+  {
+   "fieldname": "feed_cost_c2",
+   "fieldtype": "Currency",
+   "label": "C2 Grower Feed Cost (KES)",
+   "options": "KES",
+   "read_only": 1,
+   "idx": 7
+  },
+  {
+   "fieldname": "feed_cost_c3",
+   "fieldtype": "Currency",
+   "label": "C3 Grower Feed Cost (KES)",
+   "options": "KES",
+   "read_only": 1,
+   "idx": 8
+  },
+  {
+   "fieldname": "feed_cost_finisher",
+   "fieldtype": "Currency",
+   "label": "Finisher Feed Cost (KES)",
+   "options": "KES",
+   "read_only": 1,
+   "idx": 9
+  },
+  {
+   "fieldname": "total_feed_cost",
+   "fieldtype": "Currency",
+   "label": "Total Feed Cost (KES)",
+   "options": "KES",
+   "read_only": 1,
+   "bold": 1,
+   "idx": 10
+  },
+  {
+   "fieldname": "col_break_costs",
+   "fieldtype": "Column Break",
+   "idx": 11
+  },
+  {
+   "fieldname": "total_mortality_birds",
+   "fieldtype": "Int",
+   "label": "Total Mortality (Birds)",
+   "read_only": 1,
+   "idx": 12
+  },
+  {
+   "fieldname": "mortality_loss_value",
+   "fieldtype": "Currency",
+   "label": "Mortality Loss Value (KES)",
+   "options": "KES",
+   "read_only": 1,
+   "description": "Dead birds × chick cost per unit",
+   "idx": 13
+  },
+  {
+   "fieldname": "other_costs",
+   "fieldtype": "Currency",
+   "label": "Other Costs (KES)",
+   "options": "KES",
+   "description": "Medication, labour, utilities — enter manually",
+   "idx": 14
+  },
+  {
+   "fieldname": "cumulative_cost",
+   "fieldtype": "Currency",
+   "label": "Cumulative / Total Cost (KES)",
+   "options": "KES",
+   "read_only": 1,
+   "bold": 1,
+   "idx": 15
+  },
+  {
+   "fieldname": "section_revenue",
+   "fieldtype": "Section Break",
+   "label": "Revenue",
+   "idx": 16
+  },
+  {
+   "fieldname": "total_birds_slaughtered",
+   "fieldtype": "Int",
+   "label": "Total Birds Slaughtered",
+   "read_only": 1,
+   "idx": 17
+  },
+  {
+   "fieldname": "total_revenue",
+   "fieldtype": "Currency",
+   "label": "Total Revenue (KES)",
+   "options": "KES",
+   "read_only": 1,
+   "bold": 1,
+   "idx": 18
+  },
+  {
+   "fieldname": "col_break_rev",
+   "fieldtype": "Column Break",
+   "idx": 19
+  },
+  {
+   "fieldname": "gross_profit",
+   "fieldtype": "Currency",
+   "label": "Gross Profit (KES)",
+   "options": "KES",
+   "read_only": 1,
+   "bold": 1,
+   "idx": 20
+  },
+  {
+   "fieldname": "net_profit",
+   "fieldtype": "Currency",
+   "label": "Net Profit (KES)",
+   "options": "KES",
+   "read_only": 1,
+   "bold": 1,
+   "idx": 21
+  },
+  {
+   "fieldname": "profit_margin_pct",
+   "fieldtype": "Percent",
+   "label": "Profit Margin %",
+   "read_only": 1,
+   "idx": 22
+  },
+  {
+   "fieldname": "section_per_bird",
+   "fieldtype": "Section Break",
+   "label": "Per Bird Analysis",
+   "idx": 23
+  },
+  {
+   "fieldname": "cost_per_bird",
+   "fieldtype": "Currency",
+   "label": "Cost / Bird (KES)",
+   "options": "KES",
+   "read_only": 1,
+   "idx": 24
+  },
+  {
+   "fieldname": "revenue_per_bird",
+   "fieldtype": "Currency",
+   "label": "Revenue / Bird (KES)",
+   "options": "KES",
+   "read_only": 1,
+   "idx": 25
+  },
+  {
+   "fieldname": "col_break_per_bird",
+   "fieldtype": "Column Break",
+   "idx": 26
+  },
+  {
+   "fieldname": "feed_cost_per_bird",
+   "fieldtype": "Currency",
+   "label": "Feed Cost / Bird (KES)",
+   "options": "KES",
+   "read_only": 1,
+   "idx": 27
+  },
+  {
+   "fieldname": "fcr",
+   "fieldtype": "Float",
+   "label": "FCR",
+   "read_only": 1,
+   "description": "Feed Conversion Ratio",
+   "idx": 28
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

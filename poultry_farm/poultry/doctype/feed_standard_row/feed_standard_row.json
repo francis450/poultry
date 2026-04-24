@@ -1,0 +1,58 @@
+{
+ "name": "Feed Standard Row",
+ "doctype": "DocType",
+ "module": "Poultry",
+ "istable": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "day_from",
+  "day_to",
+  "feed_std_gms",
+  "bwt_std_gms",
+  "feed_type"
+ ],
+ "fields": [
+  {
+   "fieldname": "day_from",
+   "fieldtype": "Int",
+   "label": "Day From",
+   "in_list_view": 1,
+   "reqd": 1,
+   "idx": 1
+  },
+  {
+   "fieldname": "day_to",
+   "fieldtype": "Int",
+   "label": "Day To",
+   "in_list_view": 1,
+   "reqd": 1,
+   "idx": 2
+  },
+  {
+   "fieldname": "feed_std_gms",
+   "fieldtype": "Float",
+   "label": "Feed Std (GMS/bird)",
+   "in_list_view": 1,
+   "reqd": 1,
+   "idx": 3
+  },
+  {
+   "fieldname": "bwt_std_gms",
+   "fieldtype": "Float",
+   "label": "B.Wt Std (GMS)",
+   "in_list_view": 1,
+   "idx": 4
+  },
+  {
+   "fieldname": "feed_type",
+   "fieldtype": "Select",
+   "label": "Expected Feed Type",
+   "options": "Pre-Starter\nC1 Grower\nC2 Grower\nC3 Grower\nFinisher",
+   "in_list_view": 1,
+   "idx": 5
+  }
+ ],
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

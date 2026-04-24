@@ -1,0 +1,253 @@
+{
+ "name": "Flock Daily Record",
+ "doctype": "DocType",
+ "module": "Poultry",
+ "naming_rule": "Expression",
+ "autoname": "format:FDR-{crop}-{day_age}",
+ "title_field": "crop",
+ "track_changes": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "crop",
+  "date",
+  "day_age",
+  "col_break_1",
+  "week_number",
+  "section_stock",
+  "opening_stock",
+  "mortality",
+  "col_break_2",
+  "closing_stock",
+  "mortality_pct",
+  "section_feed",
+  "feed_std_gms",
+  "feed_in_kg",
+  "col_break_3",
+  "std_total_kg",
+  "feed_variance_kg",
+  "section_weight",
+  "is_weigh_day",
+  "bwt_actual_gms",
+  "col_break_4",
+  "bwt_std_gms",
+  "bwt_variance_gms",
+  "section_remarks",
+  "vaccination",
+  "vaccination_details",
+  "remarks",
+  "alert_sent"
+ ],
+ "fields": [
+  {
+   "fieldname": "crop",
+   "fieldtype": "Link",
+   "label": "Poultry Crop",
+   "options": "Poultry Crop",
+   "reqd": 1,
+   "in_list_view": 1,
+   "get_query": "return { filters: { status: ['in', ['Active', 'Slaughter']] } }",
+   "idx": 1
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date",
+   "reqd": 1,
+   "default": "Today",
+   "in_list_view": 1,
+   "idx": 2
+  },
+  {
+   "fieldname": "day_age",
+   "fieldtype": "Int",
+   "label": "Day Age",
+   "reqd": 1,
+   "in_list_view": 1,
+   "description": "Day 1 = placement day",
+   "idx": 3
+  },
+  {
+   "fieldname": "col_break_1",
+   "fieldtype": "Column Break",
+   "idx": 4
+  },
+  {
+   "fieldname": "week_number",
+   "fieldtype": "Int",
+   "label": "Week Number",
+   "read_only": 1,
+   "description": "Auto-calculated from day_age",
+   "idx": 5
+  },
+  {
+   "fieldname": "section_stock",
+   "fieldtype": "Section Break",
+   "label": "Stock",
+   "idx": 6
+  },
+  {
+   "fieldname": "opening_stock",
+   "fieldtype": "Int",
+   "label": "Opening Stock",
+   "reqd": 1,
+   "description": "Auto-fetched from previous day closing stock",
+   "idx": 7
+  },
+  {
+   "fieldname": "mortality",
+   "fieldtype": "Int",
+   "label": "Mortality",
+   "default": "0",
+   "idx": 8
+  },
+  {
+   "fieldname": "col_break_2",
+   "fieldtype": "Column Break",
+   "idx": 9
+  },
+  {
+   "fieldname": "closing_stock",
+   "fieldtype": "Int",
+   "label": "Closing Stock",
+   "read_only": 1,
+   "description": "Opening Stock − Mortality",
+   "idx": 10
+  },
+  {
+   "fieldname": "mortality_pct",
+   "fieldtype": "Percent",
+   "label": "Mortality %",
+   "read_only": 1,
+   "idx": 11
+  },
+  {
+   "fieldname": "section_feed",
+   "fieldtype": "Section Break",
+   "label": "Feed",
+   "idx": 12
+  },
+  {
+   "fieldname": "feed_std_gms",
+   "fieldtype": "Float",
+   "label": "Feed Std (GMS/bird)",
+   "description": "Standard feed per bird for this age — auto-populated from Feed Standard Config",
+   "idx": 13
+  },
+  {
+   "fieldname": "feed_in_kg",
+   "fieldtype": "Float",
+   "label": "Feed In (KG)",
+   "description": "Actual feed given today in KG",
+   "idx": 14
+  },
+  {
+   "fieldname": "col_break_3",
+   "fieldtype": "Column Break",
+   "idx": 15
+  },
+  {
+   "fieldname": "std_total_kg",
+   "fieldtype": "Float",
+   "label": "Std Total (KG)",
+   "read_only": 1,
+   "description": "Feed Std GMS × Closing Stock ÷ 1000",
+   "idx": 16
+  },
+  {
+   "fieldname": "feed_variance_kg",
+   "fieldtype": "Float",
+   "label": "Feed Variance (KG)",
+   "read_only": 1,
+   "description": "Feed In KG − Std Total KG. Negative = under-fed.",
+   "idx": 17
+  },
+  {
+   "fieldname": "section_weight",
+   "fieldtype": "Section Break",
+   "label": "Body Weight",
+   "idx": 18
+  },
+  {
+   "fieldname": "is_weigh_day",
+   "fieldtype": "Check",
+   "label": "Weigh Day?",
+   "default": "0",
+   "idx": 19
+  },
+  {
+   "fieldname": "bwt_actual_gms",
+   "fieldtype": "Float",
+   "label": "Actual Body Weight (GMS)",
+   "depends_on": "eval: doc.is_weigh_day == 1",
+   "description": "Average weight of sampled birds in grams",
+   "idx": 20
+  },
+  {
+   "fieldname": "col_break_4",
+   "fieldtype": "Column Break",
+   "idx": 21
+  },
+  {
+   "fieldname": "bwt_std_gms",
+   "fieldtype": "Float",
+   "label": "B.Wt Std (GMS)",
+   "depends_on": "eval: doc.is_weigh_day == 1",
+   "description": "Standard body weight for this week — auto-populated",
+   "idx": 22
+  },
+  {
+   "fieldname": "bwt_variance_gms",
+   "fieldtype": "Float",
+   "label": "B.Wt Variance (GMS)",
+   "read_only": 1,
+   "depends_on": "eval: doc.is_weigh_day == 1",
+   "description": "Actual − Standard. Negative = below target.",
+   "idx": 23
+  },
+  {
+   "fieldname": "section_remarks",
+   "fieldtype": "Section Break",
+   "label": "Remarks & Events",
+   "idx": 24
+  },
+  {
+   "fieldname": "vaccination",
+   "fieldtype": "Check",
+   "label": "Vaccination Given?",
+   "default": "0",
+   "idx": 25
+  },
+  {
+   "fieldname": "vaccination_details",
+   "fieldtype": "Data",
+   "label": "Vaccination Details",
+   "depends_on": "eval: doc.vaccination == 1",
+   "idx": 26
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks",
+   "idx": 27
+  },
+  {
+   "fieldname": "alert_sent",
+   "fieldtype": "Check",
+   "label": "Mortality Alert Sent",
+   "read_only": 1,
+   "hidden": 1,
+   "idx": 28
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1
+  }
+ ],
+ "sort_field": "day_age",
+ "sort_order": "ASC"
+}
