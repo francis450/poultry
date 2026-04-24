@@ -1,0 +1,20 @@
+{
+ "creation": "2026-04-24 00:00:00.000000",
+ "docstatus": 0,
+ "doctype": "Number Card",
+ "document_type": "Poultry Crop",
+ "filters_json": "[[\"Poultry Crop\",\"status\",\"in\",[\"Active\",\"Slaughter\"]]]",
+ "function": "Count",
+ "idx": 0,
+ "is_public": 1,
+ "is_standard": 1,
+ "label": "Open Crops",
+ "modified": "2026-04-24 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Poultry",
+ "name": "Poultry Open Crops",
+ "owner": "Administrator",
+ "show_percentage_stats": 1,
+ "stats_time_interval": "Weekly",
+ "type": "Document Type"
+}

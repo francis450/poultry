@@ -1,4 +1,5 @@
 import frappe
+from frappe.utils import add_days, today
 
 
 def run():
@@ -224,3 +225,245 @@ def create_crop_14():
 	crop.insert(ignore_permissions=True)
 	frappe.db.commit()
 	print(f"  Created Crop 14: {crop.name}")
+
+
+def create_demo_lifecycle_data():
+	"""
+	Seed a realistic demo lifecycle across Active, Slaughter, and Closed crops
+	so the Poultry workspace cards and charts have data to render.
+	"""
+	company = get_company()
+	warehouses = {
+		"belmonte": frappe.db.get_value(
+			"Warehouse", {"warehouse_name": "Belmonte Farm Store", "company": company}, "name"
+		),
+		"paul": frappe.db.get_value(
+			"Warehouse", {"warehouse_name": "Paul Farm Store", "company": company}, "name"
+		),
+	}
+
+	configs = [
+		{
+			"crop_number": 201,
+			"farm_name": "Demo Active Farm",
+			"farm_code": "DEMA",
+			"warehouse": warehouses["belmonte"],
+			"placement_date": add_days(today(), -9),
+			"chicks_received": 300,
+			"chick_cost_per_unit": 78,
+			"daily_records": build_daily_rows(10, 300, default_feed=6.5),
+			"target_status": "Active",
+		},
+		{
+			"crop_number": 202,
+			"farm_name": "Demo Slaughter Farm",
+			"farm_code": "DEMS",
+			"warehouse": warehouses["paul"],
+			"placement_date": add_days(today(), -39),
+			"chicks_received": 280,
+			"chick_cost_per_unit": 80,
+			"daily_records": build_daily_rows(40, 280, default_feed=9.0),
+			"feed_purchases": [
+				{
+					"purchase_date": add_days(today(), -30),
+					"supplier": "Demo Feed Supplier",
+					"feed_items": [
+						{"feed_type": "C1 Grower", "no_of_bags": 12, "pack_weight_kg": 50, "price_per_bag": 2450},
+						{"feed_type": "C2 Grower", "no_of_bags": 10, "pack_weight_kg": 50, "price_per_bag": 2550},
+					],
+				}
+			],
+			"collection_date": add_days(today(), -2),
+			"collection_details": [
+				{"weight_band": "Below 1.6 KG", "no_of_birds": 45, "average_weight_kg": 1.55, "price_per_kg": 180},
+				{"weight_band": "1.6 to 1.8 KG", "no_of_birds": 80, "average_weight_kg": 1.72, "price_per_kg": 186},
+				{"weight_band": "Above 1.8 KG", "no_of_birds": 110, "average_weight_kg": 1.92, "price_per_kg": 192},
+			],
+			"target_status": "Slaughter",
+		},
+		{
+			"crop_number": 203,
+			"farm_name": "Demo Closed Farm",
+			"farm_code": "DEMC",
+			"warehouse": warehouses["belmonte"],
+			"placement_date": add_days(today(), -46),
+			"chicks_received": 260,
+			"chick_cost_per_unit": 77,
+			"daily_records": build_daily_rows(42, 260, default_feed=8.2),
+			"feed_purchases": [
+				{
+					"purchase_date": add_days(today(), -38),
+					"supplier": "Demo Feed Supplier",
+					"feed_items": [
+						{"feed_type": "Pre-Starter", "no_of_bags": 6, "pack_weight_kg": 50, "price_per_bag": 2300},
+						{"feed_type": "C1 Grower", "no_of_bags": 8, "pack_weight_kg": 50, "price_per_bag": 2450},
+					],
+				},
+				{
+					"purchase_date": add_days(today(), -24),
+					"supplier": "Demo Feed Supplier",
+					"feed_items": [
+						{"feed_type": "C2 Grower", "no_of_bags": 8, "pack_weight_kg": 50, "price_per_bag": 2550},
+						{"feed_type": "C3 Grower", "no_of_bags": 10, "pack_weight_kg": 50, "price_per_bag": 2600},
+					],
+				},
+				{
+					"purchase_date": add_days(today(), -10),
+					"supplier": "Demo Feed Supplier",
+					"feed_items": [
+						{"feed_type": "Finisher", "no_of_bags": 9, "pack_weight_kg": 50, "price_per_bag": 2700},
+					],
+				},
+			],
+			"collection_date": add_days(today(), -4),
+			"collection_details": [
+				{"weight_band": "Below 1.6 KG", "no_of_birds": 30, "average_weight_kg": 1.52, "price_per_kg": 178},
+				{"weight_band": "1.6 to 1.8 KG", "no_of_birds": 70, "average_weight_kg": 1.73, "price_per_kg": 185},
+				{"weight_band": "Above 1.8 KG", "no_of_birds": 120, "average_weight_kg": 1.96, "price_per_kg": 193},
+			],
+			"target_status": "Closed",
+		},
+	]
+
+	for config in configs:
+		if frappe.db.exists("Poultry Crop", {"crop_number": config["crop_number"], "farm_code": config["farm_code"]}):
+			print(f"  Demo crop already exists: {config['farm_code']} / {config['crop_number']}")
+			continue
+
+		crop = frappe.get_doc(
+			{
+				"doctype": "Poultry Crop",
+				"crop_number": config["crop_number"],
+				"farm_name": config["farm_name"],
+				"farm_code": config["farm_code"],
+				"warehouse": config["warehouse"],
+				"placement_date": config["placement_date"],
+				"chicks_received": config["chicks_received"],
+				"chick_cost_per_unit": config["chick_cost_per_unit"],
+				"remarks": "Demo lifecycle seed data for Poultry workspace verification.",
+			}
+		)
+		crop.insert(ignore_permissions=True)
+		crop.activate_crop()
+		print(f"  Created demo crop: {crop.name}")
+
+		create_demo_daily_records(crop.name, config["placement_date"], config["daily_records"])
+		refresh_crop_stats(crop.name)
+
+		for purchase in config.get("feed_purchases", []):
+			create_demo_feed_purchase(crop.name, purchase)
+
+		if config["target_status"] in {"Slaughter", "Closed"}:
+			crop.reload()
+			crop.start_slaughter()
+			create_demo_bird_collection(crop.name, config["collection_date"], config["collection_details"])
+
+		if config["target_status"] == "Closed":
+			crop.reload()
+			crop.close_crop()
+		else:
+			refresh_crop_stats(crop.name)
+
+	frappe.db.commit()
+	print("  Demo lifecycle data ready.")
+
+
+def build_daily_rows(days, opening_stock, default_feed):
+	rows = []
+	current_stock = opening_stock
+	for day_age in range(1, days + 1):
+		mortality = 2 if day_age % 9 == 0 else 1 if day_age % 4 == 0 else 0
+		feed_in_kg = round(default_feed + (day_age * 0.35), 2)
+		is_weigh_day = 1 if day_age in {7, 14, 21, 28, 35, 42} else 0
+		bwt_actual_gms = 0
+		if is_weigh_day:
+			standards = frappe.get_attr(
+				"poultry_farm.poultry.doctype.flock_daily_record.flock_daily_record.get_standards_for_day"
+			)(day_age)
+			bwt_actual_gms = (standards.get("bwt_std_gms") or 0) - 15
+
+		rows.append(
+			{
+				"day_age": day_age,
+				"opening_stock": current_stock,
+				"mortality": mortality,
+				"feed_in_kg": feed_in_kg,
+				"is_weigh_day": is_weigh_day,
+				"bwt_actual_gms": bwt_actual_gms,
+			}
+		)
+		current_stock -= mortality
+
+	return rows
+
+
+def create_demo_daily_records(crop_name, placement_date, rows):
+	get_standards = frappe.get_attr(
+		"poultry_farm.poultry.doctype.flock_daily_record.flock_daily_record.get_standards_for_day"
+	)
+	for row in rows:
+		record_date = add_days(placement_date, row["day_age"] - 1)
+		if frappe.db.exists("Flock Daily Record", {"crop": crop_name, "day_age": row["day_age"]}):
+			continue
+
+		standards = get_standards(row["day_age"]) or {}
+		doc = frappe.get_doc(
+			{
+				"doctype": "Flock Daily Record",
+				"crop": crop_name,
+				"date": record_date,
+				"day_age": row["day_age"],
+				"opening_stock": row["opening_stock"],
+				"mortality": row["mortality"],
+				"feed_std_gms": standards.get("feed_std_gms"),
+				"feed_in_kg": row["feed_in_kg"],
+				"is_weigh_day": row["is_weigh_day"],
+				"bwt_std_gms": standards.get("bwt_std_gms") if row["is_weigh_day"] else 0,
+				"bwt_actual_gms": row["bwt_actual_gms"] if row["is_weigh_day"] else 0,
+			}
+		)
+		doc.insert(ignore_permissions=True)
+
+
+def create_demo_feed_purchase(crop_name, payload):
+	if frappe.db.exists(
+		"Feed Purchase Entry",
+		{"crop": crop_name, "purchase_date": payload["purchase_date"], "supplier": payload["supplier"]},
+	):
+		return
+
+	doc = frappe.get_doc(
+		{
+			"doctype": "Feed Purchase Entry",
+			"crop": crop_name,
+			"purchase_date": payload["purchase_date"],
+			"supplier": payload["supplier"],
+			"remarks": "Demo lifecycle seed",
+			"feed_items": payload["feed_items"],
+		}
+	)
+	doc.insert(ignore_permissions=True)
+	doc.submit()
+
+
+def create_demo_bird_collection(crop_name, collection_date, details):
+	if frappe.db.exists("Bird Collection Entry", {"crop": crop_name, "collection_date": collection_date}):
+		return
+
+	doc = frappe.get_doc(
+		{
+			"doctype": "Bird Collection Entry",
+			"crop": crop_name,
+			"collection_date": collection_date,
+			"remarks": "Demo lifecycle seed",
+			"collection_details": details,
+		}
+	)
+	doc.insert(ignore_permissions=True)
+	doc.submit()
+
+
+def refresh_crop_stats(crop_name):
+	frappe.get_attr(
+		"poultry_farm.poultry.doctype.flock_daily_record.flock_daily_record.update_crop_stats"
+	)(crop_name)

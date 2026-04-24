@@ -1,0 +1,321 @@
+{
+ "app": "poultry_farm",
+ "charts": [
+  {
+   "chart_name": "Poultry Crop Statuses",
+   "label": "Crop Statuses"
+  },
+  {
+   "chart_name": "Poultry Daily Feed Intake",
+   "label": "Daily Feed Intake"
+  }
+ ],
+ "content": "[{\"id\":\"poultry_card_kpi_1\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Poultry Open Crops\",\"col\":3}},{\"id\":\"poultry_card_kpi_2\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Poultry Live Birds\",\"col\":3}},{\"id\":\"poultry_card_kpi_3\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Poultry Closed Crops\",\"col\":3}},{\"id\":\"poultry_card_kpi_4\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Poultry Revenue\",\"col\":3}},{\"id\":\"poultry_chart_1\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Poultry Crop Statuses\",\"col\":4}},{\"id\":\"poultry_chart_2\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Poultry Daily Feed Intake\",\"col\":8}},{\"id\":\"poultry_spacer_1\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"poultry_header_1\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Quick Access</b></span>\",\"col\":12}},{\"id\":\"poultry_shortcut_1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Poultry Crop\",\"col\":3}},{\"id\":\"poultry_shortcut_2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Flock Daily Record\",\"col\":3}},{\"id\":\"poultry_shortcut_3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Feed Purchase Entry\",\"col\":3}},{\"id\":\"poultry_shortcut_4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Bird Collection Entry\",\"col\":3}},{\"id\":\"poultry_shortcut_5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Crop Daily Performance\",\"col\":3}},{\"id\":\"poultry_shortcut_6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Crop Profit Loss\",\"col\":3}},{\"id\":\"poultry_spacer_2\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"poultry_header_2\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Masters &amp; Reports</b></span>\",\"col\":12}},{\"id\":\"poultry_card_1\",\"type\":\"card\",\"data\":{\"card_name\":\"Operations\",\"col\":4}},{\"id\":\"poultry_card_2\",\"type\":\"card\",\"data\":{\"card_name\":\"Planning & Setup\",\"col\":4}},{\"id\":\"poultry_card_3\",\"type\":\"card\",\"data\":{\"card_name\":\"Stock & Masters\",\"col\":4}},{\"id\":\"poultry_card_4\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}}]",
+ "creation": "2026-04-24 00:00:00.000000",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "tree",
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Poultry",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Operations",
+   "link_count": 0,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Poultry Crop",
+   "link_count": 0,
+   "link_to": "Poultry Crop",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "Poultry Crop",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Flock Daily Record",
+   "link_count": 0,
+   "link_to": "Flock Daily Record",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "Poultry Crop",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Feed Purchase Entry",
+   "link_count": 0,
+   "link_to": "Feed Purchase Entry",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "Poultry Crop",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Bird Collection Entry",
+   "link_count": 0,
+   "link_to": "Bird Collection Entry",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "Poultry Crop",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Crop Financial Summary",
+   "link_count": 0,
+   "link_to": "Crop Financial Summary",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Planning & Setup",
+   "link_count": 0,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Feed Standard Config",
+   "link_count": 0,
+   "link_to": "Feed Standard Config",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Role",
+   "link_count": 0,
+   "link_to": "Role",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "User",
+   "link_count": 0,
+   "link_to": "User",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Stock & Masters",
+   "link_count": 0,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Item",
+   "link_count": 0,
+   "link_to": "Item",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Item Group",
+   "link_count": 0,
+   "link_to": "Item Group",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Warehouse",
+   "link_count": 0,
+   "link_to": "Warehouse",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "UOM",
+   "link_count": 0,
+   "link_to": "UOM",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Reports",
+   "link_count": 0,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Crop Daily Performance",
+   "link_count": 0,
+   "link_to": "Crop Daily Performance",
+   "link_type": "Report",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Weekly Mortality Report",
+   "link_count": 0,
+   "link_to": "Weekly Mortality Report",
+   "link_type": "Report",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Feed Consumption Report",
+   "link_count": 0,
+   "link_to": "Feed Consumption Report",
+   "link_type": "Report",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Crop Profit Loss",
+   "link_count": 0,
+   "link_to": "Crop Profit Loss",
+   "link_type": "Report",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Crop Performance Comparison",
+   "link_count": 0,
+   "link_to": "Crop Performance Comparison",
+   "link_type": "Report",
+   "onboard": 1,
+   "type": "Link"
+  }
+ ],
+ "modified": "2026-04-24 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Poultry",
+ "name": "Poultry",
+ "number_cards": [
+  {
+   "label": "Open Crops",
+   "number_card_name": "Poultry Open Crops"
+  },
+  {
+   "label": "Live Birds",
+   "number_card_name": "Poultry Live Birds"
+  },
+  {
+   "label": "Closed Crops",
+   "number_card_name": "Poultry Closed Crops"
+  },
+  {
+   "label": "Revenue",
+   "number_card_name": "Poultry Revenue"
+  }
+ ],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "restrict_to_domain": "",
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "Farm Manager"
+  },
+  {
+   "role": "Store Manager"
+  },
+  {
+   "role": "Farm Director"
+  }
+ ],
+ "sequence_id": 35.0,
+ "shortcuts": [
+  {
+   "label": "Poultry Crop",
+   "link_to": "Poultry Crop",
+   "type": "DocType"
+  },
+  {
+   "label": "Flock Daily Record",
+   "link_to": "Flock Daily Record",
+   "type": "DocType"
+  },
+  {
+   "label": "Feed Purchase Entry",
+   "link_to": "Feed Purchase Entry",
+   "type": "DocType"
+  },
+  {
+   "label": "Bird Collection Entry",
+   "link_to": "Bird Collection Entry",
+   "type": "DocType"
+  },
+  {
+   "label": "Crop Daily Performance",
+   "link_to": "Crop Daily Performance",
+   "type": "Report"
+  },
+  {
+   "label": "Crop Profit Loss",
+   "link_to": "Crop Profit Loss",
+   "type": "Report"
+  }
+ ],
+ "title": "Poultry"
+}

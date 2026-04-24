@@ -5,6 +5,8 @@ app_description = "Poultry Farm Management"
 app_email = "franciskamande2001@gmail.com"
 app_license = "mit"
 
+after_migrate = "poultry_farm.poultry.workspace_access.sync_workspace_roles"
+
 # Document Events
 doc_events = {
 	"Flock Daily Record": {
@@ -272,4 +274,3 @@ scheduler_events = {
 # ------------
 # List of apps whose translatable strings should be excluded from this app's translations.
 # ignore_translatable_strings_from = []
-

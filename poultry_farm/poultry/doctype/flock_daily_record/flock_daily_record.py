@@ -2,15 +2,60 @@ import math
 
 import frappe
 from frappe.model.document import Document
+from frappe.utils import date_diff
 
 
 class FlockDailyRecord(Document):
 
+	def before_naming(self):
+		self.populate_day_age()
+
 	def validate(self):
+		self.populate_day_age()
+		self.populate_opening_stock()
+		self.populate_standards()
 		self.calculate_stock()
 		self.calculate_week_number()
 		self.calculate_feed_variance()
 		self.calculate_bwt_variance()
+
+	def populate_day_age(self):
+		if self.crop and self.date and not self.day_age:
+			placement_date = frappe.db.get_value("Poultry Crop", self.crop, "placement_date")
+			if placement_date:
+				self.day_age = date_diff(self.date, placement_date) + 1
+
+	def populate_opening_stock(self):
+		if not self.crop or self.opening_stock:
+			return
+
+		opening_stock = get_previous_closing_stock(self.crop, self.day_age) if self.day_age else None
+		if opening_stock is None:
+			crop = frappe.db.get_value(
+				"Poultry Crop",
+				self.crop,
+				["current_stock", "chicks_received"],
+				as_dict=True,
+			)
+			if crop:
+				opening_stock = crop.current_stock or crop.chicks_received
+
+		if opening_stock is not None:
+			self.opening_stock = opening_stock
+
+	def populate_standards(self):
+		if not self.day_age:
+			return
+
+		standards = get_standards_for_day(self.day_age)
+		if not standards:
+			return
+
+		if not self.feed_std_gms:
+			self.feed_std_gms = standards.get("feed_std_gms")
+
+		if self.is_weigh_day and not self.bwt_std_gms:
+			self.bwt_std_gms = standards.get("bwt_std_gms")
 
 	def calculate_stock(self):
 		self.closing_stock = (self.opening_stock or 0) - (self.mortality or 0)
@@ -129,6 +174,9 @@ def get_standards_for_day(day_age):
 @frappe.whitelist()
 def get_previous_closing_stock(crop, day_age):
 	"""Return the closing stock of the immediately preceding day record."""
+	if not day_age or int(day_age) <= 1:
+		return None
+
 	prev = frappe.db.sql("""
 		SELECT closing_stock
 		FROM `tabFlock Daily Record`

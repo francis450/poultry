@@ -1,0 +1,35 @@
+{
+ "add_total_row": 0,
+ "columns": [],
+ "creation": "2026-04-24 00:00:00.000000",
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "letter_head": null,
+ "modified": "2026-04-24 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Poultry",
+ "name": "Weekly Mortality Report",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "ref_doctype": "Flock Daily Record",
+ "report_name": "Weekly Mortality Report",
+ "report_type": "Script Report",
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "Farm Manager"
+  },
+  {
+   "role": "Store Manager"
+  },
+  {
+   "role": "Farm Director"
+  }
+ ]
+}
