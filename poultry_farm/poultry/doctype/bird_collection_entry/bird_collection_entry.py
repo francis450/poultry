@@ -32,19 +32,32 @@ class BirdCollectionEntry(Document):
 
 
 def on_submit(doc, method):
-	"""Update crop's running totals for birds collected and revenue."""
+	"""Update crop's running totals for birds collected, revenue, and FCR."""
 	all_collections = frappe.db.sql("""
 		SELECT SUM(total_birds) as birds, SUM(total_revenue) as revenue
 		FROM `tabBird Collection Entry`
 		WHERE crop = %s AND docstatus = 1
 	""", doc.crop, as_dict=True)
 
+	updates = {}
 	if all_collections:
-		frappe.db.set_value("Poultry Crop", doc.crop, {
-			"total_birds_collected": all_collections[0].birds   or 0,
-			"total_revenue":         all_collections[0].revenue or 0,
-		})
+		updates["total_birds_collected"] = all_collections[0].birds   or 0
+		updates["total_revenue"]         = all_collections[0].revenue or 0
+
+	total_live_weight_kg = frappe.db.sql("""
+		SELECT SUM(bcd.total_weight_kg)
+		FROM `tabBird Collection Detail` bcd
+		JOIN `tabBird Collection Entry` bce ON bce.name = bcd.parent
+		WHERE bce.crop = %s AND bce.docstatus = 1
+	""", doc.crop)[0][0] or 0
+
+	if total_live_weight_kg:
+		total_feed_kg = frappe.db.get_value("Poultry Crop", doc.crop, "total_feed_consumed_kg") or 0
+		updates["fcr"] = round(total_feed_kg / total_live_weight_kg, 3)
+
+	if updates:
+		frappe.db.set_value("Poultry Crop", doc.crop, updates)
 
 
 def on_cancel(doc, method):
-	on_submit(doc, method)
+	on_submit(doc, method)  # recalculates from remaining submitted entries

@@ -115,4 +115,5 @@ def generate_financial_summary(crop_name):
 	summary.fcr                      = fcr
 
 	summary.save(ignore_permissions=True)
+	frappe.db.set_value("Poultry Crop", crop_name, "fcr", fcr)
 	frappe.msgprint(f"Financial Summary {summary.name} created/updated.", alert=True)

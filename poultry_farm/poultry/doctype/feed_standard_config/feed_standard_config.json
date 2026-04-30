@@ -5,7 +5,11 @@
  "issingle": 1,
  "engine": "InnoDB",
  "field_order": [
-  "standards"
+  "standards",
+  "alert_thresholds_section",
+  "mortality_alert_pct",
+  "feed_drop_alert_pct",
+  "bwt_deficit_alert_pct"
  ],
  "fields": [
   {
@@ -14,6 +18,36 @@
    "label": "Daily Feed Standards",
    "options": "Feed Standard Row",
    "idx": 1
+  },
+  {
+   "fieldname": "alert_thresholds_section",
+   "fieldtype": "Section Break",
+   "label": "Early Warning Thresholds",
+   "idx": 2
+  },
+  {
+   "fieldname": "mortality_alert_pct",
+   "fieldtype": "Float",
+   "label": "Daily Mortality Alert (%)",
+   "default": "1.0",
+   "description": "Alert when daily mortality exceeds this % of opening stock",
+   "idx": 3
+  },
+  {
+   "fieldname": "feed_drop_alert_pct",
+   "fieldtype": "Float",
+   "label": "Feed Drop Alert (% below standard)",
+   "default": "20.0",
+   "description": "Alert when actual feed intake is this % or more below the daily standard",
+   "idx": 4
+  },
+  {
+   "fieldname": "bwt_deficit_alert_pct",
+   "fieldtype": "Float",
+   "label": "Body Weight Deficit Alert (% below standard)",
+   "default": "10.0",
+   "description": "Alert on weigh days when actual body weight is this % or more below standard",
+   "idx": 5
   }
  ],
  "permissions": [

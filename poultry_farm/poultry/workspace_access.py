@@ -84,6 +84,7 @@ def _sync_json_backed_docs(folder, doctype, name_key):
 	root = Path(frappe.get_app_path("poultry_farm", "poultry", folder))
 	if not root.exists():
 		return
+	columns = set(frappe.db.get_table_columns(doctype))
 
 	for json_file in root.glob("*/*.json"):
 		data = json.loads(json_file.read_text())
@@ -96,5 +97,10 @@ def _sync_json_backed_docs(folder, doctype, name_key):
 				continue
 			if fieldname == "roles":
 				continue
+			if fieldname not in columns:
+				continue
+
+			if isinstance(value, (dict, list)):
+				value = json.dumps(value)
 
 			frappe.db.set_value(doctype, docname, fieldname, value, update_modified=False)
