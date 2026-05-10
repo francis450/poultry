@@ -10,9 +10,11 @@ frappe.ui.form.on("Crop Consumable Sheet", {
 			}
 		});
 
-		// Auto-populate all catalogue rows on a new form when items is still empty
+		// Auto-populate all catalogue rows on a new form when no real items exist yet
+		// (Frappe auto-inserts one blank row into required child tables — ignore it)
 		if (!frm.is_new()) return;
-		if (frm.doc.items && frm.doc.items.length) return;
+		let has_real_rows = (frm.doc.items || []).some(r => r.item);
+		if (has_real_rows) return;
 
 		frappe.call({
 			method: "poultry_farm.poultry.doctype.crop_consumable_sheet.crop_consumable_sheet.get_catalogue_with_carryover",
@@ -22,6 +24,7 @@ frappe.ui.form.on("Crop Consumable Sheet", {
 				r.message.forEach(function(ci) {
 					let row = frm.add_child("items");
 					row.item               = ci.item;
+					row.item_name          = ci.item_name;
 					row.unit               = ci.unit;
 					row.qty_brought_forward = ci.qty_brought_forward;
 				});

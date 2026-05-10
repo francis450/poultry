@@ -7,6 +7,7 @@
  "engine": "InnoDB",
  "field_order": [
   "item",
+  "item_name",
   "item_code",
   "unit",
   "qty_brought_forward",
@@ -22,11 +23,20 @@
   {
    "fieldname": "item",
    "fieldtype": "Link",
-   "label": "Item",
+   "label": "Item (ID)",
    "options": "Consumable Item",
    "reqd": 1,
-   "in_list_view": 1,
+   "print_hide": 1,
    "idx": 1
+  },
+  {
+   "fieldname": "item_name",
+   "fieldtype": "Data",
+   "label": "Item",
+   "fetch_from": "item.item_name",
+   "read_only": 1,
+   "in_list_view": 1,
+   "idx": 2
   },
   {
    "fieldname": "item_code",
@@ -35,7 +45,7 @@
    "fetch_from": "item.item_code",
    "read_only": 1,
    "print_hide": 1,
-   "idx": 2
+   "idx": 3
   },
   {
    "fieldname": "unit",
@@ -43,21 +53,21 @@
    "label": "Unit",
    "in_list_view": 1,
    "description": "e.g. gms, Lts, bags",
-   "idx": 3
+   "idx": 4
   },
   {
    "fieldname": "qty_brought_forward",
    "fieldtype": "Float",
    "label": "Brought Forward",
    "in_list_view": 1,
-   "idx": 4
+   "idx": 5
   },
   {
    "fieldname": "qty_purchased",
    "fieldtype": "Float",
    "label": "Purchased",
    "in_list_view": 1,
-   "idx": 5
+   "idx": 6
   },
   {
    "fieldname": "qty_in_store",
@@ -65,14 +75,14 @@
    "label": "In Store",
    "read_only": 1,
    "description": "Brought Forward + Purchased",
-   "idx": 6
+   "idx": 7
   },
   {
    "fieldname": "qty_used",
    "fieldtype": "Float",
    "label": "Qty Used",
    "in_list_view": 1,
-   "idx": 7
+   "idx": 8
   },
   {
    "fieldname": "qty_balance",
@@ -80,20 +90,20 @@
    "label": "Balance",
    "read_only": 1,
    "description": "In Store − Used",
-   "idx": 8
+   "idx": 9
   },
   {
    "fieldname": "qty_expected_next_crop",
    "fieldtype": "Float",
    "label": "Expected Next Crop",
-   "idx": 9
+   "idx": 10
   },
   {
    "fieldname": "unit_cost",
    "fieldtype": "Currency",
    "label": "Unit Cost (KES)",
    "options": "KES",
-   "idx": 10
+   "idx": 11
   },
   {
    "fieldname": "total_purchase_cost",
@@ -102,7 +112,7 @@
    "options": "KES",
    "read_only": 1,
    "description": "Qty Purchased × Unit Cost",
-   "idx": 11
+   "idx": 12
   }
  ],
  "permissions": [],

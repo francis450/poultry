@@ -6,7 +6,9 @@ class CropConsumableSheet(Document):
 
 	def before_insert(self):
 		self._fetch_warehouse()
-		if not self.items:
+		# Frappe auto-adds one blank row to required child tables — treat that as empty
+		if not any(row.item for row in (self.items or [])):
+			self.items = []
 			self._populate_from_catalogue()
 
 	def validate(self):
@@ -32,6 +34,7 @@ class CropConsumableSheet(Document):
 		for ci in _catalogue_items():
 			row = self.append("items", {})
 			row.item = ci.name
+			row.item_name = ci.item_name
 			row.unit = ci.default_unit or ""
 			row.qty_brought_forward = carryover.get(ci.name, 0)
 		self.calculate_totals()
@@ -44,8 +47,9 @@ class CropConsumableSheet(Document):
 def _catalogue_items():
 	return frappe.get_all(
 		"Consumable Item",
-		fields=["name", "default_unit", "item_code"],
+		fields=["name", "item_name", "default_unit", "item_code"],
 		order_by="category asc, item_name asc",
+		ignore_permissions=True,
 	)
 
 
@@ -130,8 +134,9 @@ def get_catalogue_with_carryover(crop):
 	carryover = _get_brought_forward(crop, warehouse)
 	return [
 		{
-			"item": ci.name,
-			"unit": ci.default_unit or "",
+			"item":              ci.name,
+			"item_name":         ci.item_name,
+			"unit":              ci.default_unit or "",
 			"qty_brought_forward": carryover.get(ci.name, 0),
 		}
 		for ci in _catalogue_items()
@@ -147,8 +152,9 @@ def get_missing_catalogue_items(crop, existing_items):
 	carryover = _get_brought_forward(crop, warehouse)
 	return [
 		{
-			"item": ci.name,
-			"unit": ci.default_unit or "",
+			"item":              ci.name,
+			"item_name":         ci.item_name,
+			"unit":              ci.default_unit or "",
 			"qty_brought_forward": carryover.get(ci.name, 0),
 		}
 		for ci in _catalogue_items()

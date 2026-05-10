@@ -65,6 +65,20 @@
    "write": 1,
    "create": 1,
    "delete": 1
+  },
+  {
+   "role": "Farm Manager",
+   "read": 1
+  },
+  {
+   "role": "Store Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1
+  },
+  {
+   "role": "Farm Director",
+   "read": 1
   }
  ],
  "sort_field": "modified",
