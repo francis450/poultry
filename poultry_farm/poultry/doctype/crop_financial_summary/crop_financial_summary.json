@@ -19,6 +19,18 @@
   "col_break_costs",
   "total_mortality_birds",
   "mortality_loss_value",
+  "section_consumable_labor",
+  "vet_cost",
+  "biosecurity_cost",
+  "fuel_heating_cost",
+  "other_consumable_cost",
+  "consumable_cost",
+  "col_break_consumable_labor",
+  "salaried_labor_cost",
+  "casual_labor_cost",
+  "labor_cost",
+  "section_totals",
+  "treatment_cost",
   "other_costs",
   "cumulative_cost",
   "section_revenue",
@@ -33,7 +45,17 @@
   "revenue_per_bird",
   "col_break_per_bird",
   "feed_cost_per_bird",
-  "fcr"
+  "fcr",
+  "section_budget",
+  "budgeted_chick_cost",
+  "budgeted_feed_cost",
+  "budgeted_consumable_cost",
+  "col_break_budget",
+  "budgeted_labor_cost",
+  "budgeted_other_cost",
+  "budgeted_total",
+  "budget_variance",
+  "budget_variance_pct"
  ],
  "fields": [
   {
@@ -138,12 +160,112 @@
    "idx": 13
   },
   {
+   "fieldname": "section_consumable_labor",
+   "fieldtype": "Section Break",
+   "label": "Consumable & Labor Costs",
+   "idx": 14
+  },
+  {
+   "fieldname": "vet_cost",
+   "fieldtype": "Currency",
+   "label": "Vet & Med Cost (KES)",
+   "options": "KES",
+   "read_only": 1,
+   "description": "Veterinary category items",
+   "idx": 15
+  },
+  {
+   "fieldname": "biosecurity_cost",
+   "fieldtype": "Currency",
+   "label": "Biosecurity & Water Cost (KES)",
+   "options": "KES",
+   "read_only": 1,
+   "description": "Biosecurity + Water Treatment category items",
+   "idx": 16
+  },
+  {
+   "fieldname": "fuel_heating_cost",
+   "fieldtype": "Currency",
+   "label": "Fuel & Heating Cost (KES)",
+   "options": "KES",
+   "read_only": 1,
+   "description": "Fuel & Heating category items",
+   "idx": 17
+  },
+  {
+   "fieldname": "other_consumable_cost",
+   "fieldtype": "Currency",
+   "label": "Other Consumables (KES)",
+   "options": "KES",
+   "read_only": 1,
+   "description": "Bedding, Cleaning, Miscellaneous category items",
+   "idx": 18
+  },
+  {
+   "fieldname": "consumable_cost",
+   "fieldtype": "Currency",
+   "label": "Total Consumable Cost (KES)",
+   "options": "KES",
+   "read_only": 1,
+   "bold": 1,
+   "description": "Sum of all consumable categories",
+   "idx": 19
+  },
+  {
+   "fieldname": "col_break_consumable_labor",
+   "fieldtype": "Column Break",
+   "idx": 20
+  },
+  {
+   "fieldname": "salaried_labor_cost",
+   "fieldtype": "Currency",
+   "label": "Salaried Labor (KES)",
+   "options": "KES",
+   "read_only": 1,
+   "description": "Sum of salaried labor entries",
+   "idx": 21
+  },
+  {
+   "fieldname": "casual_labor_cost",
+   "fieldtype": "Currency",
+   "label": "Casual Labor (KES)",
+   "options": "KES",
+   "read_only": 1,
+   "description": "Sum of casual/day-rate labor entries",
+   "idx": 22
+  },
+  {
+   "fieldname": "labor_cost",
+   "fieldtype": "Currency",
+   "label": "Total Labor Cost (KES)",
+   "options": "KES",
+   "read_only": 1,
+   "bold": 1,
+   "description": "Salaried + Casual",
+   "idx": 23
+  },
+  {
+   "fieldname": "section_totals",
+   "fieldtype": "Section Break",
+   "label": "Cost Totals",
+   "idx": 24
+  },
+  {
+   "fieldname": "treatment_cost",
+   "fieldtype": "Currency",
+   "label": "Treatment Cost (KES)",
+   "options": "KES",
+   "read_only": 1,
+   "description": "Sum of all submitted Crop Treatment Entries",
+   "idx": 25
+  },
+  {
    "fieldname": "other_costs",
    "fieldtype": "Currency",
    "label": "Other Costs (KES)",
    "options": "KES",
-   "description": "Medication, labour, utilities — enter manually",
-   "idx": 14
+   "description": "Any additional costs not captured above — enter manually",
+   "idx": 26
   },
   {
    "fieldname": "cumulative_cost",
@@ -152,20 +274,21 @@
    "options": "KES",
    "read_only": 1,
    "bold": 1,
-   "idx": 15
+   "description": "Chick + Feed + Consumables + Labor + Treatment + Other + Mortality Loss",
+   "idx": 27
   },
   {
    "fieldname": "section_revenue",
    "fieldtype": "Section Break",
    "label": "Revenue",
-   "idx": 16
+   "idx": 27
   },
   {
    "fieldname": "total_birds_slaughtered",
    "fieldtype": "Int",
    "label": "Total Birds Slaughtered",
    "read_only": 1,
-   "idx": 17
+   "idx": 28
   },
   {
    "fieldname": "total_revenue",
@@ -174,12 +297,12 @@
    "options": "KES",
    "read_only": 1,
    "bold": 1,
-   "idx": 18
+   "idx": 29
   },
   {
    "fieldname": "col_break_rev",
    "fieldtype": "Column Break",
-   "idx": 19
+   "idx": 30
   },
   {
    "fieldname": "gross_profit",
@@ -188,7 +311,7 @@
    "options": "KES",
    "read_only": 1,
    "bold": 1,
-   "idx": 20
+   "idx": 31
   },
   {
    "fieldname": "net_profit",
@@ -197,20 +320,20 @@
    "options": "KES",
    "read_only": 1,
    "bold": 1,
-   "idx": 21
+   "idx": 32
   },
   {
    "fieldname": "profit_margin_pct",
    "fieldtype": "Percent",
    "label": "Profit Margin %",
    "read_only": 1,
-   "idx": 22
+   "idx": 33
   },
   {
    "fieldname": "section_per_bird",
    "fieldtype": "Section Break",
    "label": "Per Bird Analysis",
-   "idx": 23
+   "idx": 34
   },
   {
    "fieldname": "cost_per_bird",
@@ -218,7 +341,7 @@
    "label": "Cost / Bird (KES)",
    "options": "KES",
    "read_only": 1,
-   "idx": 24
+   "idx": 35
   },
   {
    "fieldname": "revenue_per_bird",
@@ -226,12 +349,12 @@
    "label": "Revenue / Bird (KES)",
    "options": "KES",
    "read_only": 1,
-   "idx": 25
+   "idx": 36
   },
   {
    "fieldname": "col_break_per_bird",
    "fieldtype": "Column Break",
-   "idx": 26
+   "idx": 37
   },
   {
    "fieldname": "feed_cost_per_bird",
@@ -239,7 +362,7 @@
    "label": "Feed Cost / Bird (KES)",
    "options": "KES",
    "read_only": 1,
-   "idx": 27
+   "idx": 38
   },
   {
    "fieldname": "fcr",
@@ -247,7 +370,78 @@
    "label": "FCR",
    "read_only": 1,
    "description": "Feed Conversion Ratio",
-   "idx": 28
+   "idx": 39
+  },
+  {
+   "fieldname": "section_budget",
+   "fieldtype": "Section Break",
+   "label": "Budget vs Actual",
+   "idx": 29
+  },
+  {
+   "fieldname": "budgeted_chick_cost",
+   "fieldtype": "Currency",
+   "label": "Budgeted Chick Cost (KES)",
+   "options": "KES",
+   "idx": 30
+  },
+  {
+   "fieldname": "budgeted_feed_cost",
+   "fieldtype": "Currency",
+   "label": "Budgeted Feed Cost (KES)",
+   "options": "KES",
+   "idx": 31
+  },
+  {
+   "fieldname": "budgeted_consumable_cost",
+   "fieldtype": "Currency",
+   "label": "Budgeted Consumable Cost (KES)",
+   "options": "KES",
+   "idx": 32
+  },
+  {
+   "fieldname": "col_break_budget",
+   "fieldtype": "Column Break",
+   "idx": 33
+  },
+  {
+   "fieldname": "budgeted_labor_cost",
+   "fieldtype": "Currency",
+   "label": "Budgeted Labor Cost (KES)",
+   "options": "KES",
+   "idx": 34
+  },
+  {
+   "fieldname": "budgeted_other_cost",
+   "fieldtype": "Currency",
+   "label": "Budgeted Other Cost (KES)",
+   "options": "KES",
+   "idx": 35
+  },
+  {
+   "fieldname": "budgeted_total",
+   "fieldtype": "Currency",
+   "label": "Total Budget (KES)",
+   "options": "KES",
+   "read_only": 1,
+   "bold": 1,
+   "idx": 36
+  },
+  {
+   "fieldname": "budget_variance",
+   "fieldtype": "Currency",
+   "label": "Budget Variance (KES)",
+   "options": "KES",
+   "read_only": 1,
+   "description": "Actual − Budget (negative = under budget)",
+   "idx": 37
+  },
+  {
+   "fieldname": "budget_variance_pct",
+   "fieldtype": "Percent",
+   "label": "Variance %",
+   "read_only": 1,
+   "idx": 38
   }
  ],
  "permissions": [

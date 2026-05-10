@@ -21,6 +21,8 @@
   "section_chick",
   "placement_date",
   "chicks_received",
+  "birds_dead_on_arrival",
+  "adjusted_opening_stock",
   "col_break_3",
   "chick_supplier",
   "chick_cost_per_unit",
@@ -103,9 +105,10 @@
   },
   {
    "fieldname": "warehouse",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "label": "Farm Warehouse",
-   "description": "Name of the warehouse/store for this farm",
+   "options": "Warehouse",
+   "description": "Warehouse where feed and consumables for this crop are stored",
    "idx": 9
   },
   {
@@ -137,22 +140,38 @@
    "idx": 13
   },
   {
+   "fieldname": "birds_dead_on_arrival",
+   "fieldtype": "Int",
+   "label": "Birds Dead on Arrival",
+   "default": "0",
+   "description": "Dead in the box / transport mortality on placement day",
+   "idx": 14
+  },
+  {
+   "fieldname": "adjusted_opening_stock",
+   "fieldtype": "Int",
+   "label": "Adjusted Opening Stock",
+   "read_only": 1,
+   "description": "Chicks Received − Dead on Arrival",
+   "idx": 15
+  },
+  {
    "fieldname": "col_break_3",
    "fieldtype": "Column Break",
-   "idx": 14
+   "idx": 16
   },
   {
    "fieldname": "chick_supplier",
    "fieldtype": "Data",
    "label": "Chick Supplier",
-   "idx": 15
+   "idx": 17
   },
   {
    "fieldname": "chick_cost_per_unit",
    "fieldtype": "Currency",
    "label": "Chick Cost / Unit (KES)",
    "options": "KES",
-   "idx": 16
+   "idx": 18
   },
   {
    "fieldname": "total_chick_cost",
@@ -161,13 +180,13 @@
    "options": "KES",
    "read_only": 1,
    "description": "Chicks Received × Cost per Unit",
-   "idx": 17
+   "idx": 19
   },
   {
    "fieldname": "section_targets",
    "fieldtype": "Section Break",
    "label": "Target & Performance (Auto-updated)",
-   "idx": 18
+   "idx": 20
   },
   {
    "fieldname": "current_stock",
@@ -175,33 +194,33 @@
    "label": "Current Stock",
    "read_only": 1,
    "description": "Live birds as of last Flock Daily Record",
-   "idx": 19
+   "idx": 21
   },
   {
    "fieldname": "total_mortality",
    "fieldtype": "Int",
    "label": "Total Mortality",
    "read_only": 1,
-   "idx": 20
+   "idx": 22
   },
   {
    "fieldname": "mortality_pct",
    "fieldtype": "Percent",
    "label": "Mortality %",
    "read_only": 1,
-   "idx": 21
+   "idx": 23
   },
   {
    "fieldname": "col_break_4",
    "fieldtype": "Column Break",
-   "idx": 22
+   "idx": 24
   },
   {
    "fieldname": "total_feed_consumed_kg",
    "fieldtype": "Float",
    "label": "Total Feed Consumed (KG)",
    "read_only": 1,
-   "idx": 23
+   "idx": 25
   },
   {
    "fieldname": "fcr",
@@ -209,45 +228,45 @@
    "label": "FCR (Feed Conversion Ratio)",
    "read_only": 1,
    "description": "Total Feed KG ÷ Total Live Weight KG",
-   "idx": 24
+   "idx": 26
   },
   {
    "fieldname": "last_recorded_weight_gms",
    "fieldtype": "Float",
    "label": "Last Recorded Weight (GMS)",
    "read_only": 1,
-   "idx": 25
+   "idx": 27
   },
   {
    "fieldname": "section_closure",
    "fieldtype": "Section Break",
    "label": "Closure",
-   "idx": 26
+   "idx": 28
   },
   {
    "fieldname": "expected_slaughter_date",
    "fieldtype": "Date",
    "label": "Expected Slaughter Date",
-   "idx": 27
+   "idx": 29
   },
   {
    "fieldname": "actual_slaughter_date",
    "fieldtype": "Date",
    "label": "Actual Slaughter Date",
    "read_only": 1,
-   "idx": 28
+   "idx": 30
   },
   {
    "fieldname": "col_break_5",
    "fieldtype": "Column Break",
-   "idx": 29
+   "idx": 31
   },
   {
    "fieldname": "total_birds_collected",
    "fieldtype": "Int",
    "label": "Total Birds Collected",
    "read_only": 1,
-   "idx": 30
+   "idx": 32
   },
   {
    "fieldname": "total_revenue",
@@ -255,13 +274,13 @@
    "label": "Total Revenue (KES)",
    "options": "KES",
    "read_only": 1,
-   "idx": 31
+   "idx": 33
   },
   {
    "fieldname": "remarks",
    "fieldtype": "Small Text",
    "label": "Remarks",
-   "idx": 32
+   "idx": 34
   }
  ],
  "permissions": [

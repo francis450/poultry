@@ -1,0 +1,72 @@
+{
+ "name": "Consumable Item",
+ "doctype": "DocType",
+ "module": "Poultry",
+ "title_field": "item_name",
+ "engine": "InnoDB",
+ "field_order": [
+  "item_name",
+  "category",
+  "col_break_1",
+  "default_unit",
+  "item_code",
+  "description"
+ ],
+ "fields": [
+  {
+   "fieldname": "item_name",
+   "fieldtype": "Data",
+   "label": "Item Name",
+   "reqd": 1,
+   "in_list_view": 1,
+   "idx": 1
+  },
+  {
+   "fieldname": "category",
+   "fieldtype": "Select",
+   "label": "Category",
+   "options": "Veterinary\nBiosecurity\nWater Treatment\nFuel & Heating\nBedding\nCleaning\nMiscellaneous",
+   "reqd": 1,
+   "in_list_view": 1,
+   "idx": 2
+  },
+  {
+   "fieldname": "col_break_1",
+   "fieldtype": "Column Break",
+   "idx": 3
+  },
+  {
+   "fieldname": "default_unit",
+   "fieldtype": "Data",
+   "label": "Default Unit",
+   "description": "e.g. gms, Lts, bags, bottles",
+   "in_list_view": 1,
+   "idx": 4
+  },
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Link",
+   "label": "ERPNext Item Code",
+   "options": "Item",
+   "description": "Link to the ERPNext stock item for warehouse tracking. Leave blank if not using stock integration.",
+   "idx": 5
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description",
+   "idx": 6
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

@@ -7,8 +7,9 @@ frappe.ui.form.on("Poultry Crop", {
 	farm_name:   function(frm) { set_crop_title(frm); },
 	crop_number: function(frm) { set_crop_title(frm); },
 
-	chicks_received:      function(frm) { calculate_chick_cost(frm); },
-	chick_cost_per_unit:  function(frm) { calculate_chick_cost(frm); },
+	chicks_received:         function(frm) { calculate_chick_cost(frm); calculate_adjusted_stock(frm); },
+	chick_cost_per_unit:     function(frm) { calculate_chick_cost(frm); },
+	birds_dead_on_arrival:   function(frm) { calculate_adjusted_stock(frm); },
 
 	refresh: function(frm) {
 		if (frm.is_new()) return;
@@ -26,6 +27,26 @@ frappe.ui.form.on("Poultry Crop", {
 			frm.add_custom_button(__("New Daily Record"), function() {
 				frappe.new_doc("Flock Daily Record", { crop: frm.doc.name });
 			}, __("Create"));
+
+			frm.add_custom_button(__("New Consumable Sheet"), function() {
+				frappe.new_doc("Crop Consumable Sheet", { crop: frm.doc.name });
+			}, __("Create"));
+
+			frm.add_custom_button(__("New Labor Entry"), function() {
+				frappe.new_doc("Crop Labor Entry", { crop: frm.doc.name });
+			}, __("Create"));
+
+			frm.add_custom_button(__("New Treatment Entry"), function() {
+				frappe.new_doc("Crop Treatment Entry", { crop: frm.doc.name });
+			}, __("Create"));
+
+			frm.add_custom_button(__("Vaccination Log"), function() {
+				frappe.set_route("List", "Crop Vaccination Log", { crop: frm.doc.name });
+			}, __("View"));
+
+			frm.add_custom_button(__("Treatment Log"), function() {
+				frappe.set_route("List", "Crop Treatment Entry", { crop: frm.doc.name });
+			}, __("View"));
 
 			frm.add_custom_button(__("New Feed Purchase"), function() {
 				frappe.new_doc("Feed Purchase Entry", {
@@ -83,4 +104,9 @@ function set_crop_title(frm) {
 function calculate_chick_cost(frm) {
 	let total = (frm.doc.chicks_received || 0) * (frm.doc.chick_cost_per_unit || 0);
 	frm.set_value("total_chick_cost", total);
+}
+
+function calculate_adjusted_stock(frm) {
+	let adjusted = (frm.doc.chicks_received || 0) - (frm.doc.birds_dead_on_arrival || 0);
+	frm.set_value("adjusted_opening_stock", adjusted);
 }

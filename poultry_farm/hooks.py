@@ -21,12 +21,21 @@ doc_events = {
 		"on_submit": "poultry_farm.poultry.doctype.bird_collection_entry.bird_collection_entry.on_submit",
 		"on_cancel": "poultry_farm.poultry.doctype.bird_collection_entry.bird_collection_entry.on_cancel",
 	},
+	"Crop Consumable Sheet": {
+		"on_submit": "poultry_farm.poultry.doctype.crop_consumable_sheet.crop_consumable_sheet.on_submit",
+		"on_cancel": "poultry_farm.poultry.doctype.crop_consumable_sheet.crop_consumable_sheet.on_cancel",
+	},
+	"Crop Labor Entry": {
+		"on_submit": "poultry_farm.poultry.doctype.crop_labor_entry.crop_labor_entry.on_submit",
+		"on_cancel": "poultry_farm.poultry.doctype.crop_labor_entry.crop_labor_entry.on_cancel",
+	},
 }
 
 # Scheduled Tasks
 scheduler_events = {
 	"daily": [
 		"poultry_farm.poultry.scheduled.create_daily_records",
+		"poultry_farm.poultry.scheduled.mark_overdue_vaccinations",
 	],
 	"weekly": [
 		"poultry_farm.poultry.scheduled.send_weekly_summary",

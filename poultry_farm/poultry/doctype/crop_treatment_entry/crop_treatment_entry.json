@@ -1,0 +1,182 @@
+{
+ "name": "Crop Treatment Entry",
+ "doctype": "DocType",
+ "module": "Poultry",
+ "naming_rule": "Expression",
+ "autoname": "format:TRT-{crop}-{####}",
+ "is_submittable": 1,
+ "track_changes": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "crop",
+  "treatment_date",
+  "day_age",
+  "col_break_1",
+  "symptoms",
+  "birds_affected",
+  "section_treatment",
+  "treatment_items",
+  "treatment_cost",
+  "section_outcome",
+  "outcome",
+  "follow_up_required",
+  "follow_up_date",
+  "col_break_outcome",
+  "administered_by",
+  "remarks",
+  "workflow_state"
+ ],
+ "fields": [
+  {
+   "fieldname": "crop",
+   "fieldtype": "Link",
+   "label": "Poultry Crop",
+   "options": "Poultry Crop",
+   "reqd": 1,
+   "in_list_view": 1,
+   "get_query": "return { filters: { status: ['in', ['Active', 'Slaughter']] } }",
+   "idx": 1
+  },
+  {
+   "fieldname": "treatment_date",
+   "fieldtype": "Date",
+   "label": "Treatment Date",
+   "reqd": 1,
+   "default": "Today",
+   "in_list_view": 1,
+   "idx": 2
+  },
+  {
+   "fieldname": "day_age",
+   "fieldtype": "Int",
+   "label": "Bird Age (Days)",
+   "read_only": 1,
+   "description": "Auto-calculated from placement date",
+   "in_list_view": 1,
+   "idx": 3
+  },
+  {
+   "fieldname": "col_break_1",
+   "fieldtype": "Column Break",
+   "idx": 4
+  },
+  {
+   "fieldname": "symptoms",
+   "fieldtype": "Small Text",
+   "label": "Symptoms / Reason for Treatment",
+   "reqd": 1,
+   "description": "Describe what was observed e.g. lethargy, respiratory distress, loose droppings",
+   "idx": 5
+  },
+  {
+   "fieldname": "birds_affected",
+   "fieldtype": "Int",
+   "label": "Birds Affected",
+   "description": "Estimated number of birds showing symptoms",
+   "idx": 6
+  },
+  {
+   "fieldname": "section_treatment",
+   "fieldtype": "Section Break",
+   "label": "Products Used",
+   "idx": 7
+  },
+  {
+   "fieldname": "treatment_items",
+   "fieldtype": "Table",
+   "label": "Treatment Items",
+   "options": "Treatment Item",
+   "reqd": 1,
+   "idx": 8
+  },
+  {
+   "fieldname": "treatment_cost",
+   "fieldtype": "Currency",
+   "label": "Total Treatment Cost (KES)",
+   "options": "KES",
+   "read_only": 1,
+   "bold": 1,
+   "description": "Sum of Qty Used × Unit Cost for all products",
+   "idx": 9
+  },
+  {
+   "fieldname": "section_outcome",
+   "fieldtype": "Section Break",
+   "label": "Outcome",
+   "idx": 10
+  },
+  {
+   "fieldname": "outcome",
+   "fieldtype": "Select",
+   "label": "Outcome",
+   "options": "\nRecovering\nResolved\nNo Change\nMortality Increase",
+   "in_list_view": 1,
+   "idx": 11
+  },
+  {
+   "fieldname": "follow_up_required",
+   "fieldtype": "Check",
+   "label": "Follow-up Required",
+   "idx": 12
+  },
+  {
+   "fieldname": "follow_up_date",
+   "fieldtype": "Date",
+   "label": "Follow-up Date",
+   "depends_on": "eval:doc.follow_up_required == 1",
+   "idx": 13
+  },
+  {
+   "fieldname": "col_break_outcome",
+   "fieldtype": "Column Break",
+   "idx": 14
+  },
+  {
+   "fieldname": "administered_by",
+   "fieldtype": "Data",
+   "label": "Administered By",
+   "idx": 15
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks",
+   "idx": 16
+  },
+  {
+   "fieldname": "workflow_state",
+   "fieldtype": "Link",
+   "label": "Workflow State",
+   "options": "Workflow State",
+   "read_only": 1,
+   "print_hide": 1,
+   "idx": 17
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "submit": 1,
+   "cancel": 1,
+   "delete": 1
+  },
+  {
+   "role": "Farm Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "submit": 1
+  },
+  {
+   "role": "Farm Director",
+   "read": 1,
+   "submit": 1,
+   "cancel": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

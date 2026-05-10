@@ -1,26 +1,24 @@
 {
- "name": "Feed Purchase Entry",
+ "name": "Crop Consumable Sheet",
  "doctype": "DocType",
  "module": "Poultry",
  "naming_rule": "Expression",
- "autoname": "format:FPE-{crop}-{####}",
+ "autoname": "format:CSH-{crop}-{####}",
  "is_submittable": 1,
  "track_changes": 1,
  "engine": "InnoDB",
  "field_order": [
   "crop",
-  "purchase_date",
+  "date_prepared",
   "col_break_1",
-  "supplier",
   "warehouse",
-  "section_items",
-  "feed_items",
-  "section_totals",
-  "total_bags",
-  "total_kgs",
-  "col_break_totals",
   "total_cost",
-  "stock_entry_reference",
+  "section_items",
+  "items",
+  "section_stock",
+  "stock_entry_receipt",
+  "col_break_stock",
+  "stock_entry_issue",
   "remarks",
   "workflow_state"
  ],
@@ -32,13 +30,12 @@
    "options": "Poultry Crop",
    "reqd": 1,
    "in_list_view": 1,
-   "get_query": "return { filters: { status: ['in', ['Active', 'Slaughter']] } }",
    "idx": 1
   },
   {
-   "fieldname": "purchase_date",
+   "fieldname": "date_prepared",
    "fieldtype": "Date",
-   "label": "Purchase Date",
+   "label": "Date Prepared",
    "reqd": 1,
    "default": "Today",
    "in_list_view": 1,
@@ -50,78 +47,72 @@
    "idx": 3
   },
   {
-   "fieldname": "supplier",
-   "fieldtype": "Data",
-   "label": "Feed Supplier",
+   "fieldname": "warehouse",
+   "fieldtype": "Link",
+   "label": "Warehouse",
+   "options": "Warehouse",
+   "description": "Auto-fetched from Poultry Crop. Used for stock entry creation on submit.",
+   "read_only": 1,
    "idx": 4
   },
   {
-   "fieldname": "warehouse",
-   "fieldtype": "Data",
-   "label": "Destination Warehouse",
-   "description": "Auto-fetched from Poultry Crop",
+   "fieldname": "total_cost",
+   "fieldtype": "Currency",
+   "label": "Total Purchase Cost (KES)",
+   "options": "KES",
+   "read_only": 1,
+   "in_list_view": 1,
    "idx": 5
   },
   {
    "fieldname": "section_items",
    "fieldtype": "Section Break",
-   "label": "Feed Items",
+   "label": "Consumable Items",
    "idx": 6
   },
   {
-   "fieldname": "feed_items",
+   "fieldname": "items",
    "fieldtype": "Table",
-   "label": "Feed Items",
-   "options": "Feed Purchase Item",
+   "label": "Items",
+   "options": "Consumable Sheet Item",
    "reqd": 1,
    "idx": 7
   },
   {
-   "fieldname": "section_totals",
+   "fieldname": "section_stock",
    "fieldtype": "Section Break",
-   "label": "Totals",
+   "label": "Stock Entries",
+   "collapsible": 1,
    "idx": 8
   },
   {
-   "fieldname": "total_bags",
-   "fieldtype": "Int",
-   "label": "Total Bags",
+   "fieldname": "stock_entry_receipt",
+   "fieldtype": "Link",
+   "label": "Material Receipt Entry",
+   "options": "Stock Entry",
    "read_only": 1,
+   "description": "Auto-created on submit for purchased quantities",
    "idx": 9
   },
   {
-   "fieldname": "total_kgs",
-   "fieldtype": "Float",
-   "label": "Total KGs",
-   "read_only": 1,
+   "fieldname": "col_break_stock",
+   "fieldtype": "Column Break",
    "idx": 10
   },
   {
-   "fieldname": "col_break_totals",
-   "fieldtype": "Column Break",
+   "fieldname": "stock_entry_issue",
+   "fieldtype": "Link",
+   "label": "Material Issue Entry",
+   "options": "Stock Entry",
+   "read_only": 1,
+   "description": "Auto-created on submit for used quantities",
    "idx": 11
-  },
-  {
-   "fieldname": "total_cost",
-   "fieldtype": "Currency",
-   "label": "Total Cost (KES)",
-   "options": "KES",
-   "read_only": 1,
-   "idx": 12
-  },
-  {
-   "fieldname": "stock_entry_reference",
-   "fieldtype": "Data",
-   "label": "Stock Entry Reference",
-   "read_only": 1,
-   "description": "Auto-generated reference on submit",
-   "idx": 13
   },
   {
    "fieldname": "remarks",
    "fieldtype": "Small Text",
    "label": "Remarks",
-   "idx": 14
+   "idx": 12
   },
   {
    "fieldname": "workflow_state",
@@ -130,7 +121,7 @@
    "options": "Workflow State",
    "read_only": 1,
    "print_hide": 1,
-   "idx": 15
+   "idx": 13
   }
  ],
  "permissions": [
@@ -144,13 +135,13 @@
    "delete": 1
   },
   {
-   "role": "Farm Manager",
+   "role": "Store Manager",
    "read": 1,
    "write": 1,
    "create": 1
   },
   {
-   "role": "Store Manager",
+   "role": "Farm Manager",
    "read": 1,
    "write": 1,
    "submit": 1

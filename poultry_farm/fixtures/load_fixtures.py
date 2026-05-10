@@ -9,6 +9,8 @@ def run():
 	create_warehouse_group()
 	create_roles()
 	create_feed_standards()
+	create_consumable_items()
+	create_vaccination_schedule_template()
 	frappe.db.commit()
 	print("Poultry Farm fixtures loaded successfully.")
 
@@ -188,6 +190,71 @@ def create_feed_standards():
 		})
 	config.save(ignore_permissions=True)
 	print(f"  Feed Standard Config populated with {len(standards)} rows.")
+
+
+# ─── CONSUMABLE ITEMS ────────────────────────────────────────────────────────
+
+def create_consumable_items():
+	items = [
+		# Veterinary
+		{"item_name": "Vacsure",           "category": "Veterinary",      "default_unit": "gms"},
+		{"item_name": "Enrocure",           "category": "Veterinary",      "default_unit": "Lts"},
+		{"item_name": "Glucose",            "category": "Veterinary",      "default_unit": "gms"},
+		{"item_name": "Vitastress",         "category": "Veterinary",      "default_unit": "Lts"},
+		{"item_name": "Livergen",           "category": "Veterinary",      "default_unit": "Lts"},
+		{"item_name": "Styne Acid",         "category": "Veterinary",      "default_unit": "Lts"},
+		{"item_name": "Mintosan",           "category": "Veterinary",      "default_unit": "Lts"},
+		{"item_name": "Broncimit",          "category": "Veterinary",      "default_unit": "Lts"},
+		{"item_name": "Chick Starts",       "category": "Veterinary",      "default_unit": "kgs"},
+		{"item_name": "Liquid Paraffin",    "category": "Veterinary",      "default_unit": "mls"},
+		# Biosecurity
+		{"item_name": "Bimakleen",          "category": "Biosecurity",     "default_unit": "Lts"},
+		{"item_name": "Farmguard",          "category": "Biosecurity",     "default_unit": "Lts"},
+		{"item_name": "Noro Cleanse",       "category": "Biosecurity",     "default_unit": "Lts"},
+		{"item_name": "Rodenticide",        "category": "Biosecurity",     "default_unit": "gms"},
+		{"item_name": "Insecticide",        "category": "Biosecurity",     "default_unit": "Lts"},
+		# Water Treatment
+		{"item_name": "Chlorine",           "category": "Water Treatment", "default_unit": "gms"},
+		{"item_name": "Flocculant",         "category": "Water Treatment", "default_unit": "gms"},
+		{"item_name": "Hydrogen Peroxide",  "category": "Water Treatment", "default_unit": "Lts"},
+		# Fuel & Heating
+		{"item_name": "Petrol",             "category": "Fuel & Heating",  "default_unit": "Lts"},
+		{"item_name": "Diesel",             "category": "Fuel & Heating",  "default_unit": "Lts"},
+		{"item_name": "Charcoal",           "category": "Fuel & Heating",  "default_unit": "bags"},
+		# Bedding
+		{"item_name": "Woodshavings",       "category": "Bedding",         "default_unit": "bags"},
+		# Cleaning
+		{"item_name": "Soap",               "category": "Cleaning",        "default_unit": "bars"},
+		{"item_name": "Liquid Soap",        "category": "Cleaning",        "default_unit": "Lts"},
+	]
+
+	for item in items:
+		if not frappe.db.exists("Consumable Item", {"item_name": item["item_name"]}):
+			frappe.get_doc({"doctype": "Consumable Item", **item}).insert(ignore_permissions=True)
+			print(f"  Created Consumable Item: {item['item_name']}")
+		else:
+			print(f"  Consumable Item already exists: {item['item_name']}")
+
+
+# ─── VACCINATION SCHEDULE TEMPLATE ───────────────────────────────────────────
+
+def create_vaccination_schedule_template():
+	template = frappe.get_doc("Vaccination Schedule Template")
+	if template.schedule_rows:
+		print("  Vaccination Schedule Template already populated.")
+		return
+
+	schedule = [
+		{"day_number": 7,  "vaccine_name": "Newcastle Disease", "route": "Drinking Water"},
+		{"day_number": 14, "vaccine_name": "Gumboro / IBD",     "route": "Drinking Water"},
+		{"day_number": 21, "vaccine_name": "Newcastle Disease", "route": "Drinking Water"},
+	]
+
+	for row in schedule:
+		template.append("schedule_rows", row)
+
+	template.save(ignore_permissions=True)
+	print(f"  Vaccination Schedule Template populated with {len(schedule)} rows.")
 
 
 # ─── HISTORICAL CROP 14 ──────────────────────────────────────────────────────

@@ -1,0 +1,108 @@
+{
+ "name": "Crop Labor Entry",
+ "doctype": "DocType",
+ "module": "Poultry",
+ "naming_rule": "Expression",
+ "autoname": "format:LAB-{crop}-{####}",
+ "is_submittable": 1,
+ "track_changes": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "crop",
+  "entry_date",
+  "col_break_1",
+  "total_cost",
+  "section_labor",
+  "labor_items",
+  "remarks",
+  "workflow_state"
+ ],
+ "fields": [
+  {
+   "fieldname": "crop",
+   "fieldtype": "Link",
+   "label": "Poultry Crop",
+   "options": "Poultry Crop",
+   "reqd": 1,
+   "in_list_view": 1,
+   "idx": 1
+  },
+  {
+   "fieldname": "entry_date",
+   "fieldtype": "Date",
+   "label": "Entry Date",
+   "reqd": 1,
+   "default": "Today",
+   "in_list_view": 1,
+   "idx": 2
+  },
+  {
+   "fieldname": "col_break_1",
+   "fieldtype": "Column Break",
+   "idx": 3
+  },
+  {
+   "fieldname": "total_cost",
+   "fieldtype": "Currency",
+   "label": "Total Labor Cost (KES)",
+   "options": "KES",
+   "read_only": 1,
+   "in_list_view": 1,
+   "idx": 4
+  },
+  {
+   "fieldname": "section_labor",
+   "fieldtype": "Section Break",
+   "label": "Labor Details",
+   "idx": 5
+  },
+  {
+   "fieldname": "labor_items",
+   "fieldtype": "Table",
+   "label": "Labor Items",
+   "options": "Crop Labor Item",
+   "reqd": 1,
+   "idx": 6
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks",
+   "idx": 7
+  },
+  {
+   "fieldname": "workflow_state",
+   "fieldtype": "Link",
+   "label": "Workflow State",
+   "options": "Workflow State",
+   "read_only": 1,
+   "print_hide": 1,
+   "idx": 8
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "submit": 1,
+   "cancel": 1,
+   "delete": 1
+  },
+  {
+   "role": "Farm Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1
+  },
+  {
+   "role": "Farm Director",
+   "read": 1,
+   "submit": 1,
+   "cancel": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

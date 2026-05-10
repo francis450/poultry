@@ -11,6 +11,15 @@ def execute(filters=None):
 		{"label": "Chick Cost (KES)", "fieldname": "chick_cost", "fieldtype": "Currency", "width": 140},
 		{"label": "Feed Cost (KES)", "fieldname": "total_feed_cost", "fieldtype": "Currency", "width": 140},
 		{"label": "Mortality Loss (KES)", "fieldname": "mortality_loss_value", "fieldtype": "Currency", "width": 160},
+		{"label": "Vet & Med (KES)", "fieldname": "vet_cost", "fieldtype": "Currency", "width": 130},
+		{"label": "Biosecurity & Water (KES)", "fieldname": "biosecurity_cost", "fieldtype": "Currency", "width": 180},
+		{"label": "Fuel & Heating (KES)", "fieldname": "fuel_heating_cost", "fieldtype": "Currency", "width": 150},
+		{"label": "Other Consumables (KES)", "fieldname": "other_consumable_cost", "fieldtype": "Currency", "width": 170},
+		{"label": "Total Consumables (KES)", "fieldname": "consumable_cost", "fieldtype": "Currency", "width": 170},
+		{"label": "Salaried Labor (KES)", "fieldname": "salaried_labor_cost", "fieldtype": "Currency", "width": 150},
+		{"label": "Casual Labor (KES)", "fieldname": "casual_labor_cost", "fieldtype": "Currency", "width": 140},
+		{"label": "Total Labor (KES)", "fieldname": "labor_cost", "fieldtype": "Currency", "width": 140},
+		{"label": "Treatment Cost (KES)", "fieldname": "treatment_cost", "fieldtype": "Currency", "width": 150},
 		{"label": "Other Costs (KES)", "fieldname": "other_costs", "fieldtype": "Currency", "width": 140},
 		{"label": "Total Cost (KES)", "fieldname": "cumulative_cost", "fieldtype": "Currency", "width": 140},
 		{"label": "Revenue (KES)", "fieldname": "total_revenue", "fieldtype": "Currency", "width": 140},
@@ -33,6 +42,15 @@ def execute(filters=None):
 			cfs.chick_cost,
 			cfs.total_feed_cost,
 			cfs.mortality_loss_value,
+			cfs.vet_cost,
+			cfs.biosecurity_cost,
+			cfs.fuel_heating_cost,
+			cfs.other_consumable_cost,
+			cfs.consumable_cost,
+			cfs.salaried_labor_cost,
+			cfs.casual_labor_cost,
+			cfs.labor_cost,
+			cfs.treatment_cost,
 			cfs.other_costs,
 			cfs.cumulative_cost,
 			cfs.total_revenue,
@@ -119,10 +137,13 @@ def _build_summary(data):
 	if not data:
 		return []
 
-	total_revenue  = sum(r.total_revenue    or 0 for r in data)
-	total_net      = sum(r.net_profit       or 0 for r in data)
-	total_feed     = sum(r.total_feed_cost  or 0 for r in data)
-	total_cost     = sum(r.cumulative_cost  or 0 for r in data)
+	total_revenue      = sum(r.total_revenue       or 0 for r in data)
+	total_net          = sum(r.net_profit          or 0 for r in data)
+	total_feed         = sum(r.total_feed_cost     or 0 for r in data)
+	total_consumable   = sum(r.consumable_cost     or 0 for r in data)
+	total_labor        = sum(r.labor_cost          or 0 for r in data)
+	total_treatment    = sum(r.treatment_cost      or 0 for r in data)
+	total_cost         = sum(r.cumulative_cost     or 0 for r in data)
 
 	margins = [r.profit_margin_pct for r in data if r.profit_margin_pct is not None]
 	fcrs    = [r.fcr               for r in data if r.fcr]
@@ -150,6 +171,27 @@ def _build_summary(data):
 		{
 			"label": "Total Feed Cost",
 			"value": total_feed,
+			"datatype": "Currency",
+			"currency": "KES",
+			"indicator": "orange",
+		},
+		{
+			"label": "Total Consumables",
+			"value": total_consumable,
+			"datatype": "Currency",
+			"currency": "KES",
+			"indicator": "orange",
+		},
+		{
+			"label": "Total Labor",
+			"value": total_labor,
+			"datatype": "Currency",
+			"currency": "KES",
+			"indicator": "orange",
+		},
+		{
+			"label": "Total Treatment",
+			"value": total_treatment,
 			"datatype": "Currency",
 			"currency": "KES",
 			"indicator": "orange",

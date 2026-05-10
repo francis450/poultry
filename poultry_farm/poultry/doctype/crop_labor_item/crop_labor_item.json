@@ -1,0 +1,77 @@
+{
+ "name": "Crop Labor Item",
+ "doctype": "DocType",
+ "module": "Poultry",
+ "istable": 1,
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "labor_type",
+  "activity",
+  "description",
+  "num_workers",
+  "num_days",
+  "rate_per_day",
+  "total_cost"
+ ],
+ "fields": [
+  {
+   "fieldname": "labor_type",
+   "fieldtype": "Select",
+   "label": "Labor Type",
+   "options": "Casual\nSalaried",
+   "reqd": 1,
+   "in_list_view": 1,
+   "idx": 1
+  },
+  {
+   "fieldname": "activity",
+   "fieldtype": "Select",
+   "label": "Activity",
+   "options": "Loading\nOffloading\nHarvesting\nCleaning\nGeneral Farm Work\nOther",
+   "in_list_view": 1,
+   "idx": 2
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Data",
+   "label": "Description",
+   "idx": 3
+  },
+  {
+   "fieldname": "num_workers",
+   "fieldtype": "Int",
+   "label": "Workers",
+   "in_list_view": 1,
+   "idx": 4
+  },
+  {
+   "fieldname": "num_days",
+   "fieldtype": "Float",
+   "label": "Days",
+   "default": "1",
+   "in_list_view": 1,
+   "idx": 5
+  },
+  {
+   "fieldname": "rate_per_day",
+   "fieldtype": "Currency",
+   "label": "Rate / Day (KES)",
+   "options": "KES",
+   "in_list_view": 1,
+   "idx": 6
+  },
+  {
+   "fieldname": "total_cost",
+   "fieldtype": "Currency",
+   "label": "Total Cost (KES)",
+   "options": "KES",
+   "read_only": 1,
+   "description": "Workers × Days × Rate",
+   "idx": 7
+  }
+ ],
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

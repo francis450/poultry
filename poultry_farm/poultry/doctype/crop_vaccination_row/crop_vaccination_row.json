@@ -1,0 +1,87 @@
+{
+ "name": "Crop Vaccination Row",
+ "doctype": "DocType",
+ "module": "Poultry",
+ "istable": 1,
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "day_number",
+  "vaccine_name",
+  "scheduled_date",
+  "status",
+  "actual_date",
+  "administered_by",
+  "dosage",
+  "batch_no",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "day_number",
+   "fieldtype": "Int",
+   "label": "Day",
+   "read_only": 1,
+   "in_list_view": 1,
+   "idx": 1
+  },
+  {
+   "fieldname": "vaccine_name",
+   "fieldtype": "Data",
+   "label": "Vaccine",
+   "read_only": 1,
+   "in_list_view": 1,
+   "idx": 2
+  },
+  {
+   "fieldname": "scheduled_date",
+   "fieldtype": "Date",
+   "label": "Scheduled Date",
+   "read_only": 1,
+   "in_list_view": 1,
+   "idx": 3
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Pending\nDone\nOverdue\nSkipped",
+   "default": "Pending",
+   "in_list_view": 1,
+   "idx": 4
+  },
+  {
+   "fieldname": "actual_date",
+   "fieldtype": "Date",
+   "label": "Actual Date",
+   "idx": 5
+  },
+  {
+   "fieldname": "administered_by",
+   "fieldtype": "Data",
+   "label": "Administered By",
+   "idx": 6
+  },
+  {
+   "fieldname": "dosage",
+   "fieldtype": "Data",
+   "label": "Dosage",
+   "idx": 7
+  },
+  {
+   "fieldname": "batch_no",
+   "fieldtype": "Data",
+   "label": "Batch No.",
+   "idx": 8
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Data",
+   "label": "Remarks",
+   "idx": 9
+  }
+ ],
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

@@ -1,0 +1,87 @@
+{
+ "name": "Treatment Item",
+ "doctype": "DocType",
+ "module": "Poultry",
+ "istable": 1,
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "product",
+  "route",
+  "dosage",
+  "quantity_used",
+  "unit_cost",
+  "total_cost",
+  "duration_days",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "product",
+   "fieldtype": "Link",
+   "label": "Product",
+   "options": "Consumable Item",
+   "reqd": 1,
+   "in_list_view": 1,
+   "idx": 1
+  },
+  {
+   "fieldname": "route",
+   "fieldtype": "Select",
+   "label": "Route",
+   "options": "Drinking Water\nFeed Mix\nOral Drench\nInjection\nTopical",
+   "default": "Drinking Water",
+   "in_list_view": 1,
+   "idx": 2
+  },
+  {
+   "fieldname": "dosage",
+   "fieldtype": "Data",
+   "label": "Dosage",
+   "description": "e.g. 5mls per 10L water",
+   "in_list_view": 1,
+   "idx": 3
+  },
+  {
+   "fieldname": "quantity_used",
+   "fieldtype": "Float",
+   "label": "Qty Used",
+   "in_list_view": 1,
+   "idx": 4
+  },
+  {
+   "fieldname": "unit_cost",
+   "fieldtype": "Currency",
+   "label": "Unit Cost (KES)",
+   "options": "KES",
+   "in_list_view": 1,
+   "idx": 5
+  },
+  {
+   "fieldname": "total_cost",
+   "fieldtype": "Currency",
+   "label": "Total Cost (KES)",
+   "options": "KES",
+   "read_only": 1,
+   "description": "Qty Used × Unit Cost",
+   "in_list_view": 1,
+   "idx": 6
+  },
+  {
+   "fieldname": "duration_days",
+   "fieldtype": "Int",
+   "label": "Duration (Days)",
+   "default": "1",
+   "idx": 7
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Data",
+   "label": "Notes",
+   "idx": 8
+  }
+ ],
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

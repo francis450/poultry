@@ -1,0 +1,29 @@
+{
+ "name": "Vaccination Schedule Template",
+ "doctype": "DocType",
+ "module": "Poultry",
+ "issingle": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "schedule_rows"
+ ],
+ "fields": [
+  {
+   "fieldname": "schedule_rows",
+   "fieldtype": "Table",
+   "label": "Vaccination Schedule",
+   "options": "Vaccination Template Row",
+   "idx": 1
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

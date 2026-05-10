@@ -1,0 +1,50 @@
+{
+ "name": "Vaccination Template Row",
+ "doctype": "DocType",
+ "module": "Poultry",
+ "istable": 1,
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "day_number",
+  "vaccine_name",
+  "route",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "day_number",
+   "fieldtype": "Int",
+   "label": "Day",
+   "reqd": 1,
+   "in_list_view": 1,
+   "idx": 1
+  },
+  {
+   "fieldname": "vaccine_name",
+   "fieldtype": "Data",
+   "label": "Vaccine Name",
+   "reqd": 1,
+   "in_list_view": 1,
+   "idx": 2
+  },
+  {
+   "fieldname": "route",
+   "fieldtype": "Select",
+   "label": "Route",
+   "options": "Drinking Water\nEye Drop\nInjection\nSpray",
+   "default": "Drinking Water",
+   "in_list_view": 1,
+   "idx": 3
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Data",
+   "label": "Notes",
+   "idx": 4
+  }
+ ],
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

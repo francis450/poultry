@@ -1,0 +1,57 @@
+{
+ "name": "Crop Vaccination Log",
+ "doctype": "DocType",
+ "module": "Poultry",
+ "naming_rule": "Expression",
+ "autoname": "format:VAC-{crop}",
+ "engine": "InnoDB",
+ "field_order": [
+  "crop",
+  "placement_date",
+  "section_vaccinations",
+  "vaccinations"
+ ],
+ "fields": [
+  {
+   "fieldname": "crop",
+   "fieldtype": "Link",
+   "label": "Poultry Crop",
+   "options": "Poultry Crop",
+   "reqd": 1,
+   "read_only": 1,
+   "in_list_view": 1,
+   "idx": 1
+  },
+  {
+   "fieldname": "placement_date",
+   "fieldtype": "Date",
+   "label": "Placement Date",
+   "read_only": 1,
+   "idx": 2
+  },
+  {
+   "fieldname": "section_vaccinations",
+   "fieldtype": "Section Break",
+   "label": "Vaccination Schedule",
+   "idx": 3
+  },
+  {
+   "fieldname": "vaccinations",
+   "fieldtype": "Table",
+   "label": "Vaccinations",
+   "options": "Crop Vaccination Row",
+   "idx": 4
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

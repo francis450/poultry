@@ -1,0 +1,111 @@
+{
+ "name": "Consumable Sheet Item",
+ "doctype": "DocType",
+ "module": "Poultry",
+ "istable": 1,
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "item",
+  "item_code",
+  "unit",
+  "qty_brought_forward",
+  "qty_purchased",
+  "qty_in_store",
+  "qty_used",
+  "qty_balance",
+  "qty_expected_next_crop",
+  "unit_cost",
+  "total_purchase_cost"
+ ],
+ "fields": [
+  {
+   "fieldname": "item",
+   "fieldtype": "Link",
+   "label": "Item",
+   "options": "Consumable Item",
+   "reqd": 1,
+   "in_list_view": 1,
+   "idx": 1
+  },
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Data",
+   "label": "Item Code",
+   "fetch_from": "item.item_code",
+   "read_only": 1,
+   "print_hide": 1,
+   "idx": 2
+  },
+  {
+   "fieldname": "unit",
+   "fieldtype": "Data",
+   "label": "Unit",
+   "in_list_view": 1,
+   "description": "e.g. gms, Lts, bags",
+   "idx": 3
+  },
+  {
+   "fieldname": "qty_brought_forward",
+   "fieldtype": "Float",
+   "label": "Brought Forward",
+   "in_list_view": 1,
+   "idx": 4
+  },
+  {
+   "fieldname": "qty_purchased",
+   "fieldtype": "Float",
+   "label": "Purchased",
+   "in_list_view": 1,
+   "idx": 5
+  },
+  {
+   "fieldname": "qty_in_store",
+   "fieldtype": "Float",
+   "label": "In Store",
+   "read_only": 1,
+   "description": "Brought Forward + Purchased",
+   "idx": 6
+  },
+  {
+   "fieldname": "qty_used",
+   "fieldtype": "Float",
+   "label": "Qty Used",
+   "in_list_view": 1,
+   "idx": 7
+  },
+  {
+   "fieldname": "qty_balance",
+   "fieldtype": "Float",
+   "label": "Balance",
+   "read_only": 1,
+   "description": "In Store − Used",
+   "idx": 8
+  },
+  {
+   "fieldname": "qty_expected_next_crop",
+   "fieldtype": "Float",
+   "label": "Expected Next Crop",
+   "idx": 9
+  },
+  {
+   "fieldname": "unit_cost",
+   "fieldtype": "Currency",
+   "label": "Unit Cost (KES)",
+   "options": "KES",
+   "idx": 10
+  },
+  {
+   "fieldname": "total_purchase_cost",
+   "fieldtype": "Currency",
+   "label": "Purchase Cost (KES)",
+   "options": "KES",
+   "read_only": 1,
+   "description": "Qty Purchased × Unit Cost",
+   "idx": 11
+  }
+ ],
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

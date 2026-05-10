@@ -3,6 +3,27 @@ import datetime
 import frappe
 
 
+def mark_overdue_vaccinations():
+	"""
+	Runs every night. Marks vaccination rows as Overdue when their
+	scheduled_date has passed and they are still Pending.
+	"""
+	today = datetime.date.today()
+
+	logs = frappe.get_all("Crop Vaccination Log", fields=["name"])
+	for log_meta in logs:
+		log = frappe.get_doc("Crop Vaccination Log", log_meta.name)
+		changed = False
+		for row in log.vaccinations:
+			if row.status == "Pending" and row.scheduled_date and frappe.utils.getdate(row.scheduled_date) < today:
+				row.status = "Overdue"
+				changed = True
+		if changed:
+			log.save(ignore_permissions=True)
+
+	frappe.db.commit()
+
+
 def create_daily_records():
 	"""
 	Runs every night at midnight.

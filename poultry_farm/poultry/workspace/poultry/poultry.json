@@ -87,6 +87,50 @@
    "type": "Link"
   },
   {
+   "dependencies": "Poultry Crop",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Crop Treatment Entry",
+   "link_count": 0,
+   "link_to": "Crop Treatment Entry",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "Poultry Crop",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Crop Consumable Sheet",
+   "link_count": 0,
+   "link_to": "Crop Consumable Sheet",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "Poultry Crop",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Crop Vaccination Log",
+   "link_count": 0,
+   "link_to": "Crop Vaccination Log",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "Poultry Crop",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Crop Labor Entry",
+   "link_count": 0,
+   "link_to": "Crop Labor Entry",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
    "hidden": 0,
    "is_query_report": 0,
    "label": "Planning & Setup",
@@ -101,6 +145,28 @@
    "label": "Feed Standard Config",
    "link_count": 0,
    "link_to": "Feed Standard Config",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Vaccination Schedule Template",
+   "link_count": 0,
+   "link_to": "Vaccination Schedule Template",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Consumable Item",
+   "link_count": 0,
+   "link_to": "Consumable Item",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -241,6 +307,39 @@
    "link_type": "Report",
    "onboard": 1,
    "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Vaccination Compliance Report",
+   "link_count": 0,
+   "link_to": "Vaccination Compliance Report",
+   "link_type": "Report",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Consumable Usage Summary",
+   "link_count": 0,
+   "link_to": "Consumable Usage Summary",
+   "link_type": "Report",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Treatment Log Report",
+   "link_count": 0,
+   "link_to": "Treatment Log Report",
+   "link_type": "Report",
+   "onboard": 1,
+   "type": "Link"
   }
  ],
  "modified": "2026-04-24 00:00:00.000000",
@@ -315,6 +414,26 @@
    "label": "Crop Profit Loss",
    "link_to": "Crop Profit Loss",
    "type": "Report"
+  },
+  {
+   "label": "Crop Treatment Entry",
+   "link_to": "Crop Treatment Entry",
+   "type": "DocType"
+  },
+  {
+   "label": "Crop Consumable Sheet",
+   "link_to": "Crop Consumable Sheet",
+   "type": "DocType"
+  },
+  {
+   "label": "Crop Vaccination Log",
+   "link_to": "Crop Vaccination Log",
+   "type": "DocType"
+  },
+  {
+   "label": "Crop Labor Entry",
+   "link_to": "Crop Labor Entry",
+   "type": "DocType"
   }
  ],
  "title": "Poultry"
