@@ -120,7 +120,11 @@ def _previous_sheet_carryover(crop_name):
 		WHERE parent = %(sheet)s
 	""", {"sheet": prev[0].name}, as_dict=True)
 
-	return {r.item: (r.qty_expected_next_crop or 0) for r in rows}
+	# Sum across rows in case the same item appears more than once
+	carryover = {}
+	for r in rows:
+		carryover[r.item] = carryover.get(r.item, 0) + (r.qty_expected_next_crop or 0)
+	return carryover
 
 
 # ---------------------------------------------------------------------------
